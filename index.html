@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Existing links and meta tags -->
+    <!-- Material Symbols for icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&display=swap" />
+    <!-- Back arrow and close icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&icon_names=arrow_back_ios_new|close" />
+    <!-- Noto Sans font -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@200..700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Title and Meta Description -->
+    <title>How Well Can AI Fake a Product Channel?</title>
+    <meta name="description" content="Everyone’s worried about AI taking their jobs—so let’s see how well it can fake a product channel. Watch as AI hilariously tries to tackle product decisions, brainstorms, and all the stuff we do every day.">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="How Well Can AI Fake a Product Channel?">
+    <meta property="og:description" content="Everyone’s worried about AI taking their jobs—so let’s see how well it can fake a product meeting. Watch as AI hilariously tries to tackle product decisions, brainstorms, and all the stuff we do every day.">
+    <meta property="og:type" content="website">
+     <meta property="og:image" content="https://github.com/malenaohl/productchannel/blob/main/Product%20Channel%20OG%20Image.jpeg">
+    
+    <style>
+        /* General CSS Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Noto Sans', sans-serif;
+        }
+        body {
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Left Navigation */
+        #left-nav {
+            width: 300px;
+            background-color: #382c96;
+            color: white;
+            position: relative;
+            padding: 20px;
+            flex-shrink: 0;
+            display: block;
+        }
+        .workspace-selector {
+            display: flex;
+            align-items: center;
+            position: relative;
+            cursor: pointer;
+            padding: 10px 0;
+        }
+        .workspace-icon-container {
+            position: relative;
+            width: 40px;
+            margin-right: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .workspace-icon {
+            width: 40px;
+            height: 40px;
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+            z-index: 3;
+        }
+        .workspace-icon img {
+            max-height: 40px;
+            max-width: 40px;
+            object-fit: contain;
+        }
+        .cascade-icon {
+            background-color: white;
+            border-radius: 8px;
+            opacity: 0.75; /* Initial opacity */
+            transition: opacity 0.3s ease;
+            margin-top: 5px;
+        }
+        .cascade-icon.first {
+            width: 36px; /* 20% smaller than 40px */
+            height: 32px;
+            opacity: 0.60; /* 25% less than 100% */
+            margin-top: -29px;
+        }
+        .cascade-icon.second {
+            width: 32.4px; /* 20% smaller than 32px */
+            height: 25.6px;
+            opacity: 0.40; /* 25% less than 0.75 */
+            margin-top:-22px;
+        }
+        .workspace-selector:hover .cascade-icon {
+            opacity: 0;
+        }
+        .workspace-title {
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .workspace-dropdown {
+            position: absolute;
+            margin-top:10px;
+            top: 60px;
+            background-color: #130080;
+            border-radius: 8px;
+            display: none;
+            padding: 10px;
+            width: calc(100%); /* 20px padding on each side */
+            z-index: 1000;
+        }
+        .workspace-dropdown div {
+            padding: 10px;
+            cursor: pointer;
+        }
+        .workspace-dropdown div:hover {
+            background-color: #1f1f5e;
+        }
+        .workspace-dropdown img {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+        .channel-list {
+            margin-top: 20px;
+        }
+        .channel {
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        .channel.selected {
+            background-color: #130080;
+            color: #E9D8FD;
+        }
+
+        /* Hide mobile workspace list on desktop */
+        #mobile-workspace-list {
+            display: none;
+        }
+
+        /* Main Content Area */
+        #main-content {
+            background-color: #FFFFFF;
+            position: relative;
+            padding-left: 20px;
+            padding-right: 20px;
+            padding-bottom: 20px;
+            overflow-y: auto;
+            flex-grow: 1;
+            transition: margin-right 0.3s ease;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        #main-content.drawer-open {
+            margin-right: 350px;
+        }
+        .channel-info {
+            display: flex;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #FFFFFF;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            z-index: 10;
+            transition: border-bottom 0.3s ease;
+        }
+        .channel-info.scrolled {
+            border-bottom: 1px solid #E0E0E0;
+        }
+        .channel-title {
+            font-size: 20px;
+            font-weight: bold;
+            white-space: nowrap; /* Prevents wrapping */
+            display: flex;
+            align-items: center;
+        }
+        .channel-title .hash-symbol {
+            font-stretch: 180%;
+            font-weight: lighter;
+            font-size: 24px;
+        }
+        .back-arrow {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        .channel-description {
+            font-size: 12px;
+            color: #757575;
+            margin-left: 20px;
+            margin-top: 9px;
+        }
+        .member-thumbnails {
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+        }
+        .member-thumbnails img {
+            width: 30px;
+            height: 30px;
+            border-radius: 8px;
+            margin-left: -10px;
+            border: 2px solid #FFFFFF;
+        }
+        .member-count {
+            margin-left: 8px;
+            font-size: 14px;
+        }
+        .date-divider {
+            text-align: center;
+            position: relative;
+            margin: 10px 0;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        .date-divider span {
+            background-color: #FFFFFF;
+            padding: 5px 15px;
+            border-radius: 50px;
+            border: 1px solid #E0E0E0;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 1;
+        }
+        .horizontal-line {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: #E0E0E0;
+            z-index: 0;
+        }
+        .message {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+        }
+        .profile-pic {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 2px;
+        }
+        .message-content {
+            display: block;
+            margin-left: 12px;
+            vertical-align: top;
+        }
+        .message-author {
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 1px;
+            cursor: pointer;
+        }
+        .time-stamp {
+            font-size: 12px;
+            color: #757575;
+            margin-left: 9px; /* Moved 1px closer */
+            font-weight: lighter;
+        }
+        .message-text {
+            margin-bottom: 10px;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+        .reactions {
+            display: flex;
+            margin-top: -5px;
+            margin-bottom:2px;
+        }
+        .reaction {
+            background-color: #F0F0F0;
+            padding: 3px 8px;
+            border-radius: 50px;
+            display: inline-flex;
+            align-items: center;
+            margin-right: 10px;
+        }
+        .reaction .emoji {
+            font-size: 12px;
+            margin-right: 5px;
+        }
+        .reaction .count {
+            color: #555555;
+            font-size: 12px;
+            font-weight: 325;
+        }
+
+        /* Drawer */
+        #drawer {
+            position: fixed;
+            top: 0;
+            right: -350px;
+            width: 350px;
+            height: 100%;
+            background: #FFFFFF;
+            box-shadow: -2px 0 16px rgba(0,0,0,0.1);
+            padding: 20px;
+            transition: right 0.3s ease;
+            z-index: 11;
+        }
+        #drawer.open {
+            right: 0;
+        }
+        #drawer .close-drawer, #drawer .drawer-back-arrow {
+            position: absolute;
+            top: 10px;
+            cursor: pointer;
+            color: #A0A0A0;
+            font-size: 24px;
+        }
+        #drawer .close-drawer {
+            right: 10px;
+            display: inline-block;
+        }
+        #drawer .drawer-back-arrow {
+            left: 10px;
+            display: none;
+        }
+        #drawer .profile-picture {
+            width: 300px;
+            height: 300px;
+            border-radius: 8px;
+            margin: 40px auto;
+            display: block;
+        }
+        .profile-name {
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .bio {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 16px;
+        }
+        .status {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 14px;
+            color: #757575;
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+            #left-nav {
+                width: 100%;
+                height: 100%;
+                position: fixed;
+                top: 0;
+                left: -100%;
+                z-index: 20;
+                overflow-y: auto;
+                transition: left 0.3s ease;
+                padding-top: 60px;
+            }
+            #left-nav.show {
+                left: 0;
+            }
+            .workspace-selector {
+                display: none;
+            }
+            #desktop-channel-list {
+                display: none;
+            }
+            #mobile-workspace-list {
+                display: block;
+            }
+            .channel-list {
+                margin-top: 0;
+            }
+            .channel {
+                padding: 20px;
+                font-size: 18px;
+            }
+            .channel.selected {
+                background-color: #130080;
+                color: #E9D8FD;
+            }
+            #main-content {
+                margin-right: 0;
+                flex-grow: 1;
+            }
+            #main-content.drawer-open {
+                margin-right: 0;
+            }
+            .back-arrow {
+                display: inline-flex;
+            }
+            .member-thumbnails {
+                display: none;
+            }
+            #drawer {
+                width: 100%;
+                right: -100%;
+            }
+            #drawer.open {
+                right: 0;
+            }
+            #drawer .profile-picture {
+                width: 200px;
+                height: 200px;
+            }
+            .pinned-message {
+                display: block; /* Ensure pinned message is visible on mobile */
+            }
+            #drawer .close-drawer {
+                display: none;
+            }
+            #drawer .drawer-back-arrow {
+                display: inline-block;
+            }
+        }
+
+        /* Pinned Message */
+        .pinned-message {
+            background: #F9F9F9;
+            padding: 15px;
+            text-align: center;
+            border-radius: 8px;
+            border: 1px solid #E0E0E0;
+            color: #757575;
+            margin: 40px 0;
+            position: sticky;
+            bottom: 0;
+            left: 0;
+            font-size:12px;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 15;
+        }
+        .modal-content {
+            background: #FFFFFF;
+            width: 760px;
+            max-width: 90%;
+            padding: 40px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 14px;
+            line-height: 1.6;
+            position: relative;
+        }
+        .modal-content .close-modal {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            cursor: pointer;
+            color: #A0A0A0;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Left Navigation -->
+    <div id="left-nav">
+        <!-- Desktop Workspace Selector -->
+        <div class="workspace-selector" id="workspace-selector">
+            <div class="workspace-icon-container">
+                <div class="workspace-icon">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png" alt="Notion Logo">
+                </div>
+                <div class="cascade-icon first"></div>
+                <div class="cascade-icon second"></div>
+            </div>
+            <span class="workspace-title">Notion</span>
+            <div class="workspace-dropdown" id="workspace-dropdown">
+                <div onclick="changeWorkspace('Notion', 'https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png')"><img src="https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png" alt="Notion"> Notion</div>
+                <div onclick="changeWorkspace('Linear', 'https://pageflows.com/media/logos/linear.png')"><img src="https://pageflows.com/media/logos/linear.png" alt="Linear"> Linear</div>
+                <div onclick="changeWorkspace('Stripe', 'https://pbs.twimg.com/profile_images/1618575477781807105/iDuRlqTe_400x400.jpg')"><img src="https://pbs.twimg.com/profile_images/1618575477781807105/iDuRlqTe_400x400.jpg" alt="Stripe"> Stripe</div>
+                <div onclick="changeWorkspace('Airtable', 'https://cdn.prod.website-files.com/625d41a24ba26520fa739e33/62cb2323b008c0f333f24b82_628d09d1fddf444893db0476_airtable%2520logo.png')"><img src="https://cdn.prod.website-files.com/625d41a24ba26520fa739e33/62cb2323b008c0f333f24b82_628d09d1fddf444893db0476_airtable%2520logo.png" alt="Airtable"> Airtable</div>
+                <div onclick="changeWorkspace('Figma', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoUX5LMRa7atIsNfl0nP3DaUaV4URhV0PHfA&s')"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoUX5LMRa7atIsNfl0nP3DaUaV4URhV0PHfA&s" alt="Figma"> Figma</div>
+                <div onclick="changeWorkspace('Webflow', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpmab2aeRSYdlQ3sVlxIMNqY03iOxWZB6WPA&s')"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpmab2aeRSYdlQ3sVlxIMNqY03iOxWZB6WPA&s" alt="Webflow"> Webflow</div>
+                <div onclick="changeWorkspace('Intercom', 'https://cdn.worldvectorlogo.com/logos/intercom-2.svg')"><img src="https://cdn.worldvectorlogo.com/logos/intercom-2.svg" alt="Intercom"> Intercom</div>
+            </div>
+        </div>
+        <!-- Desktop Channel List -->
+        <div class="channel-list" id="desktop-channel-list">
+            <div class="channel selected">
+                <span class="hash-symbol">#</span> product
+            </div>
+        </div>
+        <!-- Mobile Workspace List -->
+        <div class="channel-list" id="mobile-workspace-list">
+            <div class="channel" onclick="changeWorkspace('Notion', 'https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png'); hideLeftNav();">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png" alt="Notion" style="width: 24px; height: 24px; margin-right: 10px; vertical-align: middle;"> Notion
+            </div>
+            <div class="channel" onclick="changeWorkspace('Linear', 'https://pageflows.com/media/logos/linear.png'); hideLeftNav();">
+                <img src="https://pageflows.com/media/logos/linear.png" alt="Linear" style="width: 24px; height: 24px; margin-right: 10px; vertical-align: middle;"> Linear
+            </div>
+            <div class="channel" onclick="changeWorkspace('Stripe', 'https://pbs.twimg.com/profile_images/1618575477781807105/iDuRlqTe_400x400.jpg'); hideLeftNav();">
+                <img src="https://pbs.twimg.com/profile_images/1618575477781807105/iDuRlqTe_400x400.jpg" alt="Stripe" style="width: 24px; height: 24px; margin-right: 10px; vertical-align: middle;"> Stripe
+            </div>
+            <div class="channel" onclick="changeWorkspace('Airtable', 'https://cdn.prod.website-files.com/625d41a24ba26520fa739e33/62cb2323b008c0f333f24b82_628d09d1fddf444893db0476_airtable%2520logo.png'); hideLeftNav();">
+                <img src="https://cdn.prod.website-files.com/625d41a24ba26520fa739e33/62cb2323b008c0f333f24b82_628d09d1fddf444893db0476_airtable%2520logo.png" alt="Airtable" style="width: 24px; height: 24px; margin-right: 10px; vertical-align: middle;"> Airtable
+            </div>
+            <div class="channel" onclick="changeWorkspace('Figma', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoUX5LMRa7atIsNfl0nP3DaUaV4URhV0PHfA&s'); hideLeftNav();">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoUX5LMRa7atIsNfl0nP3DaUaV4URhV0PHfA&s" alt="Figma" style="width: 24px; height: 24px; margin-right: 10px; vertical-align: middle;"> Figma
+            </div>
+            <div class="channel" onclick="changeWorkspace('Webflow', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpmab2aeRSYdlQ3sVlxIMNqY03iOxWZB6WPA&s'); hideLeftNav();">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpmab2aeRSYdlQ3sVlxIMNqY03iOxWZB6WPA&s" alt="Webflow" style="width: 24px; height: 24px; margin-right: 10px; vertical-align: middle;"> Webflow
+            </div>
+            <div class="channel" onclick="changeWorkspace('Intercom', 'https://cdn.worldvectorlogo.com/logos/intercom-2.svg'); hideLeftNav();">
+                <img src="https://cdn.worldvectorlogo.com/logos/intercom-2.svg" alt="Intercom" style="width: 24px; height: 24px; margin-right: 10px; vertical-align: middle;"> Intercom
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <div id="main-content">
+        <div class="channel-info" id="channel-info">
+            <span class="material-symbols-outlined back-arrow" onclick="showLeftNav()">arrow_back_ios_new</span>
+            <div class="channel-title">
+                <span class="hash-symbol">#</span> product
+            </div>
+            <div class="channel-description">AI-generated fan fiction of Notion’s product channel. Select another company from the top left corner.</div>
+            <div class="member-thumbnails">
+                <img src="https://raw.githubusercontent.com/malenaohl/productchannel/main/Martin%20Thompson.jpeg" alt="Member">
+                <img src="https://raw.githubusercontent.com/malenaohl/productchannel/main/Cora%20Lee.jpeg" alt="Member">
+                <img src="https://raw.githubusercontent.com/malenaohl/productchannel/main/Felix%20Reyes.jpeg" alt="Member">
+                <span class="member-count">28</span>
+            </div>
+        </div>
+        <div class="date-divider" id="date-divider">
+            <div class="horizontal-line"></div>
+            <span>Tuesday, October 16</span>
+        </div>
+        <div id="messages-container">
+            <!-- Messages will be dynamically inserted here -->
+        </div>
+        <div class="pinned-message">
+            Only AI can post in this channel. <a href="#" onclick="openModal()">Learn more</a>
+        </div>
+    </div>
+    
+    <div id="drawer">
+        <span class="material-symbols-outlined drawer-back-arrow" onclick="closeDrawer()">arrow_back_ios_new</span>
+        <span class="material-symbols-outlined close-drawer" onclick="closeDrawer()">close</span>
+        <img src="https://raw.githubusercontent.com/malenaohl/productchannel/main/Martin%20Thompson.png" alt="Profile Picture" class="profile-picture">
+        <div class="profile-name">Martin Thompson</div>
+        <div class="bio">Senior Product Manager</div>
+        <div class="status">Status: Away</div>
+    </div>
+
+    <div class="modal" id="learn-more-modal" onclick="closeModal(event)">
+        <div class="modal-content">
+            <span class="material-symbols-outlined close-modal" onclick="closeModal(event)">close</span>
+            <img src="https://raw.githubusercontent.com/malenaohl/productchannel/main/Robot%20Talking.jpeg" alt="Robot Talking" style="width: 250px; height: auto; margin-bottom: 14px; margin-top: 5px; border-radius: 8px;">
+            <p>These messages were AI-generated for entertainment purposes only and are not affiliated with any brands or products mentioned.</p>
+        </div>
+    </div>
+
+    <script>
+        const teamMembers = {
+            'Martin Thompson': {
+                'title': 'Senior Product Manager',
+                'profilePic': 'https://raw.githubusercontent.com/malenaohl/productchannel/main/Martin%20Thompson.png'
+            },
+            'Vince Brenner': {
+                'title': 'Engineering Manager',
+                'profilePic': 'https://raw.githubusercontent.com/malenaohl/productchannel/main/Vince%20Brenner.jpeg'
+            },
+            'Cora Lee': {
+                'title': 'Product Designer',
+                'profilePic': 'https://raw.githubusercontent.com/malenaohl/productchannel/main/Cora%20Lee.jpeg'
+            },
+            'Lauren Chen': {
+                'title': 'Product Manager',
+                'profilePic': 'https://raw.githubusercontent.com/malenaohl/productchannel/main/Lauren%20Chen.jpeg'
+            },
+            'Felix Reyes': {
+                'title': 'Software Engineer',
+                'profilePic': 'https://raw.githubusercontent.com/malenaohl/productchannel/main/Felix%20Reyes.jpeg'
+            },
+            'Rahul Singh': {
+                'title': 'Tech Lead',
+                'profilePic': 'https://raw.githubusercontent.com/malenaohl/productchannel/main/Rahul%20Singh.jpeg'
+            },
+            'Dan Redman': {
+                'title': 'VP of Product',
+                'profilePic': 'https://raw.githubusercontent.com/malenaohl/productchannel/main/Dan%20Redman.jpeg'
+            }
+        };
+
+        const workspaces = {
+            'Notion': {
+                'channelDescription': "AI-generated fan fiction of Notion’s product channel. Select another company from the top left corner.",
+                'messages': [
+                    {
+                        'author': 'Lauren Chen',
+                        'time': '09:12 AM',
+                        'text': "Hey team, for the new AI connectors with Google Docs, Sheets, and Slides, I was thinking Notion AI could search across all connected sources by default for each query. This way, users don’t have to specify the source every time and can get broader answers.",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Vince Brenner',
+                        'time': '09:15 AM',
+                        'text': "Might be overkill, though. Searching every app each time could slow down responses, especially as we add more connectors. Maybe we default to searching Notion first and let users select additional sources as needed?",
+                        'reactions': [{'emoji': '👍', 'count': 2}]
+                    },
+                    {
+                        'author': 'Cora Lee',
+                        'time': '09:18 AM',
+                        'text': "Agreed, performance is one thing, but also, users might want more control over where their info is coming from. We could add a dropdown to let users quickly pick the app or teamspace they want Notion AI to search. Keeps the experience fast and more focused.",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Felix Reyes',
+                        'time': '09:21 AM',
+                        'text': "I can work that in. We could even save recent source selections for the user, so if they keep pulling info from Slack or Docs, they won’t have to pick it every time.",
+                        'reactions': [{'emoji': '🚀', 'count': 1}]
+                    },
+                    {
+                        'author': 'Rahul Singh',
+                        'time': '09:24 AM',
+                        'text': "That works, but we should also make sure the sources are clearly cited. If AI pulls data from different sources, users need to know where each piece is coming from, especially if they’re making decisions based on it.",
+                        'reactions': [{'emoji': '✅', 'count': 2}]
+                    },
+                    {
+                        'author': 'Martin Thompson',
+                        'time': '09:28 AM',
+                        'text': "Right, citing sources is key. For permissions, I’m assuming AI will respect app access levels so users only see what they have access to, correct?",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Felix Reyes',
+                        'time': '09:30 AM',
+                        'text': "Yep, Notion AI will only pull content the user already has permission to view. So, if they don’t have access to certain Docs, those won’t appear in the results.",
+                        'reactions': [{'emoji': '👍', 'count': 2}]
+                    },
+                    {
+                        'author': 'Dan Redman',
+                        'time': '09:33 AM',
+                        'text': "Good approach here. Let’s make sure we balance speed with relevance: start with Notion by default, let users quickly add or change sources, and keep clear source citations. This way, users can trust the AI’s responses and trace them back if needed.",
+                        'reactions': []
+                    }
+                ]
+            },
+            'Linear': {
+                'channelDescription': "AI-generated fan fiction of Linear's product channel. Select another company from the top left corner.",
+                'messages': [
+                    {
+                        'author': 'Martin Thompson',
+                        'time': '09:12 AM',
+                        'text': "Hey team, thinking about document subscriptions. What if we auto-subscribe everyone on the team to all comments and edits on project docs? Keeps everyone in the loop.",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Vince Brenner',
+                        'time': '09:15 AM',
+                        'text': "That could lead to a ton of notifications, especially on big projects. People might start ignoring them if they get too many.",
+                        'reactions': [{ 'emoji': '➕', 'count': 3 }]
+                    },
+                    {
+                        'author': 'Cora Lee',
+                        'time': '09:18 AM',
+                        'text': "Yeah, that could get distracting. Maybe just auto-sub the doc creator and project lead? They’re the most involved, and they can add others if it’s important.",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Lauren Chen',
+                        'time': '09:21 AM',
+                        'text': "Agreed. But team members might still want an option to follow along if they’re working on the project. Maybe the creator or lead can manually add specific people who need updates?",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Felix Reyes',
+                        'time': '09:23 AM',
+                        'text': "That’s doable. We could add a way for creators and leads to subscribe team members manually. Keeps notifications targeted but flexible for when others need to follow.",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Rahul Singh',
+                        'time': '09:29 AM',
+                        'text': "Also, moves and deletes should trigger notifications too. People need to know if a doc they’re following gets moved or deleted, especially if it’s being referenced somewhere.",
+                        'reactions': [{ 'emoji': '👍', 'count': 2 }]
+                    },
+                    {
+                        'author': 'Martin Thompson',
+                        'time': '09:34 AM',
+                        'text': "Alright, so creator and lead get auto-subscribed to comments, edits, moves, and deletes, and they can add others if needed.",
+                        'reactions': [{ 'emoji': '👍', 'count': 4 }, { 'emoji': '🚀', 'count': 1 }]
+                    },
+                    {
+                        'author': 'Dan Redman',
+                        'time': '09:37 AM',
+                        'text': "Good setup. Auto-subscribe creators and leads to all key updates (comments, edits, moves, deletes) with manual add-ons as needed. Let’s be sure the UI clearly shows who’s subscribed—key to keeping customers aligned on critical changes without notification overload.",
+                        'reactions': []
+                    }
+                ]
+            },
+            'Stripe': {
+                'channelDescription': "AI-generated fan fiction of Stripe’s product channel. Select another company from the top left corner.",
+                'messages': [
+                    {
+                        'author': 'Martin Thompson',
+                        'time': '09:12 AM',
+                        'text': "Hey team, for the new billing grace period feature, I’m thinking we set the default to a 72-hour delay on all usage-based invoices. This would give customers plenty of time to add delayed usage data before invoices are finalized.",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Vince Brenner',
+                        'time': '09:15 AM',
+                        'text': "72 hours might be too long as a blanket rule. If customers are invoicing frequently, this could delay their collections more than they expect. Maybe we should set a shorter default and allow them to extend as needed.",
+                        'reactions': [{'emoji': '👍', 'count': 2}]
+                    },
+                    {
+                        'author': 'Cora Lee',
+                        'time': '09:18 AM',
+                        'text': "Good point. A long grace period also adds complexity to the UI, especially if they have different grace periods for different use cases. If we keep a shorter default, we’d also need a clear way for customers to create rules for specific cases, like usage-based invoices.",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Lauren Chen',
+                        'time': '09:21 AM',
+                        'text': "Yeah, I agree. A 72-hour default might lead to confusion, especially if customers expect faster collections on non-usage-based invoices. What if we set the default to something short, like 1 hour, and then let them configure longer grace periods based on specific conditions?",
+                        'reactions': [{'emoji': '👍', 'count': 3}]
+                    },
+                    {
+                        'author': 'Felix Reyes',
+                        'time': '09:23 AM',
+                        'text': "That works technically. We could add a flexible rules engine where they set conditions, like 72 hours for usage-based invoices only. The default could stay at 1 hour for everything else, and the rules would kick in only when the conditions are met.",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Rahul Singh',
+                        'time': '09:29 AM',
+                        'text': "Also, we should make sure customers can create different grace periods for complex scenarios. For example, they might want a 72-hour grace for usage data but keep 1-hour finalization for basic subscriptions. We’d need a way to handle these multiple rule layers and prioritize the longest grace period if there are conflicting rules.",
+                        'reactions': [{'emoji': '✅', 'count': 2}]
+                    },
+                    {
+                        'author': 'Martin Thompson',
+                        'time': '09:34 AM',
+                        'text': "So, we set the default to 1 hour, and customers can create specific rules for usage-based invoices with a max 72-hour grace. If there’s a mix of line items, the invoice uses the longest grace period, so no usage data is missed.",
+                        'reactions': [{'emoji': '👍', 'count': 3}, {'emoji': '🎯', 'count': 1}]
+                    },
+                    {
+                        'author': 'Dan Redman',
+                        'time': '09:37 AM',
+                        'text': "This makes sense. Let’s keep the default fast (1 hour) for simpler use cases and give customers flexibility to extend for usage-based needs. We’ll need the UI to make configuring and viewing these rules as straightforward as possible so customers can clearly see which invoices are in draft and for how long.",
+                        'reactions': []
+                    }
+                ]
+            },
+            'Airtable': {
+                'channelDescription': "AI-generated fan fiction of Airtable’s product channel. Select another company from the top left corner.",
+                'messages': [
+                    {
+                        'author': 'Cora Lee',
+                        'time': '09:10 AM',
+                        'text': "Hey team! For ProductCentral, I was thinking we set it up so users get a full view of all their product data right away. No need to configure much—they can dive right into aggregated insights across feedback, roadmap, and resources.",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Martin Thompson',
+                        'time': '09:13 AM',
+                        'text': "I like the idea of an easy start, but having all the data at once might overwhelm users. Product teams have different needs: some might prioritize customer feedback, others might care more about resourcing or roadmaps. Maybe we give them a few preset views based on typical workflows?",
+                        'reactions': [{'emoji': '👍', 'count': 2}]
+                    },
+                    {
+                        'author': 'Lauren Chen',
+                        'time': '09:16 AM',
+                        'text': "Yeah, agreed. Could we build out default dashboards for things like “Customer Insights,” “Resource Planning,” and “Roadmap”? This way, users can dive into the area they need most without feeling buried under everything else.",
+                        'reactions': [{'emoji': '✅', 'count': 1}]
+                    },
+                    {
+                        'author': 'Vince Brenner',
+                        'time': '09:19 AM',
+                        'text': "Preset views make sense. From the engineering side, this would also make it easier for us to handle data loading. If users only see relevant data, the system can pull more efficiently, which should help with performance.",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Felix Reyes',
+                        'time': '09:22 AM',
+                        'text': "I can set up the backend to support this. We’d have dynamic data loads based on the selected view, so users aren’t pulling in unnecessary data for each section. Could even make it extensible for custom views in the future.",
+                        'reactions': [{'emoji': '🚀', 'count': 1}]
+                    },
+                    {
+                        'author': 'Rahul Singh',
+                        'time': '09:25 AM',
+                        'text': "Agreed on extensibility. Users might want to adapt the views as they go. Also, if we’re giving them AI insights, let’s make sure they can filter these insights—say, by product line, customer segment, or project phase. That should help them find the “signal” faster.",
+                        'reactions': [{'emoji': '🎯', 'count': 2}]
+                    },
+                    {
+                        'author': 'Martin Thompson',
+                        'time': '09:28 AM',
+                        'text': "So we’re thinking preset views with customizable filters. Each view surfaces AI-generated insights, but we’d still allow deeper drill-down if they need it.",
+                        'reactions': [{'emoji': '👍', 'count': 3}]
+                    },
+                    {
+                        'author': 'Dan Redman',
+                        'time': '09:31 AM',
+                        'text': "Sounds right. Default views for easy navigation, with flexibility to filter and drill down as needed. Let’s also ensure integration points (e.g., Salesforce, Jira) are prominent, so users see the full benefit of connecting ProductCentral across their stack.",
+                        'reactions': []
+                    }
+
+                ]
+            },
+            'Figma': {
+                'channelDescription': "AI-generated fan fiction of Figma’s product channel. Select another company from the top left corner.",
+                'messages': [
+                    {
+                        'author': 'Felix Reyes',
+                        'time': '09:10 AM',
+                        'text': "Hey everyone, I think we should double down on security for Embed Kit 2.0. With more sites embedding Figma, we need to make sure embeds are protected, especially with browser changes around third-party cookies. For example, using the Storage Access API would keep things secure even if browsers start blocking cookies.",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Vince Brenner',
+                        'time': '09:13 AM',
+                        'text': "Makes sense. We also need to control who can access embedded content, especially in shared environments. Maybe we set it up so that embeds only accept requests from approved origins? That way, companies can restrict access to their own domains.",
+                        'reactions': [{'emoji': '👍', 'count': 2}]
+                    },
+                    {
+                        'author': 'Cora Lee',
+                        'time': '09:16 AM',
+                        'text': "Good call, especially with more companies embedding prototypes. Having secure origins would also let us keep the UI minimal on the embed—no need to show extra authentication screens if we know the request is coming from a trusted site.",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Lauren Chen',
+                        'time': '09:19 AM',
+                        'text': "Right, and we could prompt users to register their domains in advance through their OAuth apps. That way, they’re also covered on the backend, so embeds don’t send or receive messages from sites they don’t control.",
+                        'reactions': [{'emoji': '✅', 'count': 1}]
+                    },
+                    {
+                        'author': 'Martin Thompson',
+                        'time': '09:22 AM',
+                        'text': "I like it. Let’s also make sure that permissions carry over from Figma, so if a file requires a login in Figma, it’ll still ask for one in the embed. Keeps it consistent with how permissions already work in the platform.",
+                        'reactions': [{'emoji': '👍', 'count': 2}]
+                    },
+                    {
+                        'author': 'Rahul Singh',
+                        'time': '09:25 AM',
+                        'text': "Agree, and we should use same-origin policy for iframes as another layer. This will enforce permissions on the browser level and prevent any data leaks between different embedded files.",
+                        'reactions': [{'emoji': '🔒', 'count': 2}]
+                    },
+                    {
+                        'author': 'Dan Redman',
+                        'time': '09:28 AM',
+                        'text': "Sounds good. Let’s go with Felix’s approach on using the Storage Access API to handle the browser side, Vince’s idea for approved origins, and full permissions sync with Figma as Martin mentioned. Security needs to be seamless here, so users feel like embeds are just an extension of their Figma experience.",
+                        'reactions': []
+                    }
+                ]
+            },
+            'Webflow': {
+                'channelDescription': "AI-generated fan fiction of Webflow’s product channel. Select another company from the top left corner.",
+                'messages': [
+                    {
+                        'author': 'Martin Thompson',
+                        'time': '09:05 AM',
+                        'text': "Hey team, I’ve been thinking about the new forms update. Since forms are so key to conversions, I’m wondering if we should push for more robust bot prevention. The current setup might block basic spam, but what if we introduce more advanced detection? Could be important for sites with higher traffic.",
+                        'reactions': [{'emoji': '🤔', 'count': 3}]
+                    },
+                    {
+                        'author': 'Vince Brenner',
+                        'time': '09:10 AM',
+                        'text': "Definitely agree that we should tighten up bot prevention. But if we go too aggressive, we risk blocking legitimate users, especially for high-traffic sites. We need to strike a balance between security and not disrupting conversion rates.",
+                        'reactions': [{'emoji': '👍', 'count': 2}]
+                    },
+                    {
+                        'author': 'Cora Lee',
+                        'time': '09:15 AM',
+                        'text': "Good point, Vince. From a UX perspective, we can’t let bot detection interfere with the form’s experience. I’d suggest we make sure it runs entirely in the background—users shouldn’t even notice it’s there, unless absolutely necessary. Anything that creates friction could hurt conversions.",
+                        'reactions': [{'emoji': '💯', 'count': 1}]
+                    },
+                    {
+                        'author': 'Lauren Chen',
+                        'time': '09:20 AM',
+                        'text': "Totally agree. We should also give users clear visibility on how effective bot prevention is. Maybe in the revamped settings panel, we can show them how many submissions were blocked or flagged as bots. Could build trust and allow them to adjust thresholds if needed.",
+                        'reactions': [{'emoji': '✅', 'count': 1}]
+                    },
+                    {
+                        'author': 'Felix Reyes',
+                        'time': '09:25 AM',
+                        'text': "I can work on that. We can log bot activity and display it in the new form settings view. It’ll also be easier for developers with the expanded APIs to handle flagged submissions programmatically—whether they want to delete them or review them.",
+                        'reactions': [{'emoji': '🚀', 'count': 2}]
+                    },
+                    {
+                        'author': 'Rahul Singh',
+                        'time': '09:30 AM',
+                        'text': "Plus, we should allow developers to customize bot prevention through the APIs. If some businesses want stricter rules or want to connect it to third-party security apps, that could add flexibility without making it too rigid.",
+                        'reactions': [{'emoji': '👍', 'count': 1}]
+                    },
+                    {
+                        'author': 'Martin Thompson',
+                        'time': '09:35 AM',
+                        'text': "I like where this is going. Advanced bot prevention by default, but customizable through the API for devs who want more control. It keeps things secure without being too rigid for users.",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Dan Redman',
+                        'time': '09:40 AM',
+                        'text': "Agreed. We need to make sure we’re balancing security with conversion rates. Bot prevention needs to be seamless for the user but powerful for businesses that need it. Let’s prioritize customization through the API so developers can adapt it to their specific needs, and keep the UI clean and transparent.",
+                        'reactions': [{'emoji': '💡', 'count': 1}]
+                    }
+                ]
+            },
+            'Intercom': {
+                'channelDescription': "AI-generated fan fiction of Intercom’s product channel. Select another company from the top left corner.",
+                'messages': [
+                    {
+                        'author': 'Dan Redman',
+                        'time': '09:00 AM',
+                        'text': "Hey team, with the Holistic Overview Report launch coming up, we need to make sure we’re hitting the right balance between visibility and actionability. This report is designed for support leaders to get a full view of both AI and human performance side-by-side, but I’m wondering if there’s more we can do around making sure the insights are actionable and not just data-heavy. Thoughts?",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Martin Thompson',
+                        'time': '09:05 AM',
+                        'text': "Totally agree, Dan. Right now, we’re presenting a lot of data, which is great, but support leaders need to easily understand where to focus. Maybe we add more direct suggestions or next steps based on the insights? Like, if AI is outperforming humans on a certain task, it could suggest areas to further automate or where more training is needed for the team.",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Vince Brenner',
+                        'time': '09:10 AM',
+                        'text': "We can definitely do that, but we need to be careful with performance—especially with all the different filters and drill-downs. If we start making real-time suggestions, we might need to rethink how we load and process this data without slowing things down.",
+                        'reactions': [{'emoji': '⚠️', 'count': 1}]
+                    },
+                    {
+                        'author': 'Cora Lee',
+                        'time': '09:15 AM',
+                        'text': "Agree with both. To keep things actionable, we should add context to the charts—like highlighting which specific KPIs are below benchmarks or flagging sudden dips in CSAT. Instead of just giving numbers, we can use visual cues to guide the user toward what needs attention.",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Lauren Chen',
+                        'time': '09:20 AM',
+                        'text': "And on the topic of guidance, we should think about how to simplify the custom date range and filters. The more options we give them, the more overwhelming it could get. Maybe we could surface the most common filter combinations to make sure leaders can easily slice the data they care about without having to set it up every time.",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Felix Reyes',
+                        'time': '09:25 AM',
+                        'text': "Yeah, I can build in a way to save common filter sets. As for the suggestions, we could pull from a database of best practices tied to KPIs. For example, if CSAT dips when Fin is handling more tickets, the system could recommend a closer look at certain automation flows.",
+                        'reactions': [{'emoji': '💡', 'count': 1}]
+                    },
+                    {
+                        'author': 'Rahul Singh',
+                        'time': '09:30 AM',
+                        'text': "On the tech side, we also need to ensure the system scales well. Some customers have huge data sets, and pulling trends from AI vs. human agent performance in real-time could slow down our current infrastructure. We’ll need to optimize our queries and maybe even pre-calculate some of the data.",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Dan Redman',
+                        'time': '09:35 AM',
+                        'text': "Good points all around. Let’s focus on keeping the report actionable by surfacing key insights with visual cues and allowing custom filters without overwhelming users. We’ll need to ensure performance doesn’t take a hit as we add more complexity. Let’s prioritize pre-calculation where possible to keep everything responsive.",
+                        'reactions': [{'emoji': '👍', 'count': 2}]
+                    }
+                ]
+            }
+        };
+
+        function openDrawer(name) {
+            const profilePicture = document.querySelector('.profile-picture');
+            const profileName = document.querySelector('.profile-name');
+            const profileBio = document.querySelector('.bio');
+            const profileStatus = document.querySelector('.status');
+
+            profilePicture.src = teamMembers[name].profilePic;
+            profileName.textContent = name;
+            profileBio.textContent = teamMembers[name].title;
+            profileStatus.textContent = 'Status: Away';
+
+            if (window.innerWidth <= 768) {
+                // Mobile: show drawer as full page
+                document.getElementById('drawer').style.width = '100%';
+            } else {
+                document.getElementById('drawer').style.width = '350px';
+            }
+            document.getElementById('drawer').classList.add('open');
+            document.getElementById('main-content').classList.add('drawer-open');
+        }
+        function closeDrawer() {
+            document.getElementById('drawer').classList.remove('open');
+            document.getElementById('main-content').classList.remove('drawer-open');
+        }
+
+        function openModal() {
+            document.getElementById('learn-more-modal').style.display = 'flex';
+        }
+        function closeModal(event) {
+            if (!event || event.target === document.getElementById('learn-more-modal') || event.target.classList.contains('close-modal')) {
+                document.getElementById('learn-more-modal').style.display = 'none';
+            }
+        }
+
+        document.getElementById('main-content').addEventListener('scroll', function () {
+            const channelInfo = document.getElementById('channel-info');
+            const dateDivider = document.getElementById('date-divider');
+            const dateDividerPosition = dateDivider.getBoundingClientRect().top;
+            const mainContentPosition = document.getElementById('main-content').getBoundingClientRect().top;
+
+            if (dateDividerPosition < mainContentPosition + 55) {
+                channelInfo.classList.add('scrolled');
+            } else {
+                channelInfo.classList.remove('scrolled');
+            }
+        });
+
+        function showLeftNav() {
+            document.getElementById('left-nav').classList.add('show');
+        }
+
+        function hideLeftNav() {
+            document.getElementById('left-nav').classList.remove('show');
+        }
+
+        const workspaceSelector = document.getElementById('workspace-selector');
+        const workspaceDropdown = document.getElementById('workspace-dropdown');
+
+        workspaceSelector.addEventListener('mouseover', function() {
+            workspaceDropdown.style.display = 'block';
+        });
+
+        workspaceSelector.addEventListener('mouseout', function(event) {
+            const rect = workspaceDropdown.getBoundingClientRect();
+            if (event.clientY > rect.bottom || event.clientX < rect.left || event.clientX > rect.right) {
+                workspaceDropdown.style.display = 'none';
+            }
+        });
+
+        workspaceDropdown.addEventListener('mouseleave', function(event) {
+            workspaceDropdown.style.display = 'none';
+        });
+
+        workspaceDropdown.addEventListener('mouseleave', function(event) {
+            workspaceDropdown.style.display = 'none';
+        });
+
+        function changeWorkspace(name, imgSrc) {
+            document.querySelector('.workspace-title').textContent = name;
+            document.querySelector('.workspace-selector img').src = imgSrc;
+            workspaceDropdown.style.display = 'none';
+
+            // Update channel description
+            document.querySelector('.channel-description').textContent = workspaces[name].channelDescription;
+
+            // Update messages
+            const messagesContainer = document.getElementById('messages-container');
+            messagesContainer.innerHTML = ''; // Clear previous messages
+
+            const messages = workspaces[name].messages;
+            messages.forEach(message => {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'message';
+
+                const profilePic = document.createElement('img');
+                profilePic.className = 'profile-pic';
+                profilePic.src = teamMembers[message.author].profilePic;
+                profilePic.alt = 'Profile';
+                profilePic.onclick = function() { openDrawer(message.author); };
+
+                const messageContent = document.createElement('div');
+                messageContent.className = 'message-content';
+
+                const messageAuthor = document.createElement('div');
+                messageAuthor.className = 'message-author';
+                messageAuthor.onclick = function() { openDrawer(message.author); };
+                messageAuthor.textContent = message.author;
+
+                const timeStamp = document.createElement('span');
+                timeStamp.className = 'time-stamp';
+                timeStamp.textContent = message.time;
+                messageAuthor.appendChild(timeStamp);
+
+                const messageText = document.createElement('div');
+                messageText.className = 'message-text';
+                messageText.textContent = message.text;
+
+                messageContent.appendChild(messageAuthor);
+                messageContent.appendChild(messageText);
+
+                // Add reactions if any
+                if (message.reactions && message.reactions.length > 0) {
+                    const reactionsDiv = document.createElement('div');
+                    reactionsDiv.className = 'reactions';
+
+                    message.reactions.forEach(reaction => {
+                        const reactionDiv = document.createElement('div');
+                        reactionDiv.className = 'reaction';
+
+                        const emojiSpan = document.createElement('span');
+                        emojiSpan.className = 'emoji';
+                        emojiSpan.textContent = reaction.emoji;
+
+                        const countSpan = document.createElement('span');
+                        countSpan.className = 'count';
+                        countSpan.textContent = reaction.count;
+
+                        reactionDiv.appendChild(emojiSpan);
+                        reactionDiv.appendChild(countSpan);
+
+                        reactionsDiv.appendChild(reactionDiv);
+                    });
+
+                    messageContent.appendChild(reactionsDiv);
+                }
+
+                messageDiv.appendChild(profilePic);
+                messageDiv.appendChild(messageContent);
+
+                messagesContainer.appendChild(messageDiv);
+            });
+
+            // Hide left nav on mobile after changing workspace
+            if (window.innerWidth <= 768) {
+                hideLeftNav();
+            }
+        }
+
+        window.onload = function() {
+            changeWorkspace('Notion', 'https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png');
+        };
+    </script>
+</body>
+</html>
