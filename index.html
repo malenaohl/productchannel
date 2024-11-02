@@ -926,121 +926,67 @@
                     }
                 ]
             },
-        'Airtable': {
+           'Airtable': {
                 'channelDescription': "AI-generated fan fiction of Airtable’s product channel. Select another company from the top left corner.",
                 'messages': [
                     {
                         'author': 'Cora Lee',
                         'time': '2:15 PM',
-                        'text': "team - been diving into the ProductCentral feedback from our enterprise beta users\nbiggest thing coming up: they want more flexibility in how AI insights are visualized\nespecially for the customer feedback synthesis part",
+                        'text': "need some eyes on the ProductCentral feedback from our enterprise beta\ncustomers love the feedback collection but they're struggling to understand release impact\nthey can't easily see if their changes are actually improving things",
                         'reactions': []
                     },
                     {
                         'author': 'Lauren Chen',
                         'time': '2:16 PM',
-                        'text': "interesting - what kind of visualizations are they looking for?\nwe already have the standard airtable views (grid/kanban/gantt/etc)",
+                        'text': "makes sense - right now they'd have to manually correlate release dates with feedback\nare they asking for something more automated?",
                         'reactions': []
                     },
                     {
                         'author': 'Cora Lee',
                         'time': '2:17 PM',
-                        'text': "they want more \"ambient intelligence\" type views\nlike auto-clustering of feedback themes\nor showing how feedback evolves over time\nbasically ways to spot patterns they wouldn't see in a regular grid view",
+                        'text': "yeah exactly\nthey want to see how feedback changes after releases\nlike \"did our UI refresh actually reduce confusion complaints\" or \"did the new onboarding help with setup issues\"",
                         'reactions': []
                     },
                     {
                         'author': 'Martin Thompson',
                         'time': '2:18 PM',
-                        'text': "this could be really powerful for product strategy\nimagine being able to see how customer needs cluster around different parts of the product\nor how sentiment changes after major releases",
-                        'reactions': [{'emoji': '🚀', 'count': 1}]
+                        'text': "thinking we could show feedback themes as line charts with release markers\nwould help teams see if their changes are actually moving the needle",
+                        'reactions': [{'emoji': '📈', 'count': 1}]
                     },
                     {
-                        'author': 'Rahul Singh',
+                        'author': 'Felix Reyes',
                         'time': '2:19 PM',
-                        'text': "technically feasible but we'd need to think carefully about the AI architecture\nshould we:\n\n• pre-compute these insights and store them\n• generate them on demand\n• trade-off between responsiveness and freshness 🤔",
+                        'text': "we'll need good theme detection and volume normalization\nespecially for customers pulling in tons of zendesk tickets",
                         'reactions': []
                     },
                     {
-                        'author': 'Felix Reyes',
+                        'author': 'Rahul Singh',
                         'time': '2:20 PM',
-                        'text': "if we're processing customer feedback from multiple sources (zendesk, salesforce, etc)\nmight make sense to have a hybrid approach\ncache the heavy computation, update incrementally as new data comes in",
-                        'reactions': [{'emoji': '👍', 'count': 2}]
+                        'text': "we can adapt our existing ML pipeline for themes\nbut might want to cache sentiment calculations, gets expensive at scale",
+                        'reactions': []
                     },
                     {
-                        'author': 'Vince Brenner',
+                        'author': 'Dan Redman',
                         'time': '2:21 PM',
-                        'text': "+1 to hybrid approach\nwe could leverage our existing sync infrastructure\nbut we'd need to extend the schema to store these new insight types",
+                        'text': "how are we thinking about surfacing the sentiment data?",
                         'reactions': []
                     },
                     {
-                        'author': 'Dan Redman',
+                        'author': 'Cora Lee',
                         'time': '2:22 PM',
-                        'text': "love this direction\nespecially if we can tie it to our \"source of truth\" story\nshowing insights that literally wouldn't be possible without having all product data in one place",
-                        'reactions': [{'emoji': '💡', 'count': 1}]
+                        'text': "small indicator above the chart showing positive/neutral/negative split with trend arrows\nkeeps it scannable for product teams",
+                        'reactions': [{'emoji': '👍', 'count': 1}]
                     },
                     {
-                        'author': 'Martin Thompson',
+                        'author': 'Lauren Chen',
                         'time': '2:23 PM',
-                        'text': "what if we made this part of the core value prop?\n\"turn your product data into predictive insights\"\ncould be a major differentiator vs traditional roadmapping tools",
+                        'text': "chase from netflix would love this - updating the launch deck to feature it more prominently\nwant to help me test it with a few more enterprise customers next week?",
                         'reactions': []
-                    },
-                    {
-                        'author': 'Lauren Chen',
-                        'time': '2:24 PM',
-                        'text': "yes! and we could extend this beyond just VoC\nimagine applying the same pattern to:\n\n• resource allocation\n• timeline predictions\n• dependency mapping",
-                        'reactions': []
-                    },
-                    {
-                        'author': 'Cora Lee',
-                        'time': '2:25 PM',
-                        'text': "i can start mocking up some visualization concepts\nthinking we could use color + clustering to show:\n\n• feedback volume\n• sentiment trends\n• theme relationships\n• priority predictions",
-                        'reactions': []
-                    },
-                    {
-                        'author': 'Felix Reyes',
-                        'time': '2:26 PM',
-                        'text': "we should also think about how this scales with data volume\nmaybe progressive loading for larger datasets?\ncould show high-level patterns first, then drill into details",
-                        'reactions': []
-                    },
-                    {
-                        'author': 'Rahul Singh',
-                        'time': '2:27 PM',
-                        'text': "we could use our interface magic to make it feel instant\nstart with cached high-level insights\nthen stream in real-time updates as we process new data",
-                        'reactions': []
-                    },
-                    {
-                        'author': 'Dan Redman',
-                        'time': '2:28 PM',
-                        'text': "this feels like exactly what enterprise product teams need\nlet's focus on making the insights actionable though\nevery visualization should lead to clear next steps",
-                        'reactions': [{'emoji': '✅', 'count': 1}]
                     },
                     {
                         'author': 'Martin Thompson',
-                        'time': '2:29 PM',
-                        'text': "agreed - should connect directly to resource planning\nif we spot an emerging customer need\nshould be able to instantly see if we have bandwidth to address it",
-                        'reactions': []
-                    },
-                    {
-                        'author': 'Lauren Chen',
-                        'time': '2:30 PM',
-                        'text': "i'll update the launch deck to emphasize this more\n\"turn customer signals into product decisions\"\nfeels like a stronger story than just \"unified product development\"",
-                        'reactions': [{'emoji': '🎯', 'count': 1}]
-                    },
-                    {
-                        'author': 'Cora Lee',
-                        'time': '2:31 PM',
-                        'text': "perfect! i'll work on the new visualization prototypes\n@Felix @Rahul let's sync tomorrow on technical feasibility?",
-                        'reactions': []
-                    },
-                    {
-                        'author': 'Felix Reyes',
-                        'time': '2:31 PM',
-                        'text': "sounds good! will bring some ideas for the progressive loading approach",
-                        'reactions': []
-                    },
-                    {
-                        'author': 'Rahul Singh',
-                        'time': '2:32 PM',
-                        'text': "👍 will prep some thoughts on the insight computation architecture",
+                        'time': '2:24 PM',
+                        'text': "yes please - will set up some calls",
                         'reactions': []
                     }
                 ]
