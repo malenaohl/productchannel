@@ -802,7 +802,7 @@
                     }
                 ]
             },
-            // ... (Add other workspaces later)
+            // ... (Other workspaces remain unchanged)
         };
 
         function openDrawer(name) {
@@ -920,7 +920,21 @@
 
                 const messageText = document.createElement('div');
                 messageText.className = 'message-text';
-                messageText.innerHTML = message.text.replace(/\n/g, '<br>'); // Handle line breaks
+
+                // Handle mentions and line breaks
+                let textWithLineBreaks = message.text.replace(/\n/g, '<br>');
+                // Handle mentions
+                const mentionRegex = /@([A-Za-z\s]+)/g;
+                textWithLineBreaks = textWithLineBreaks.replace(mentionRegex, function(match, p1) {
+                    const name = p1.trim();
+                    if (teamMembers[name]) {
+                        return `<a href="#" class="mention" onclick="openDrawer('${name}'); return false;">@${name}</a>`;
+                    } else {
+                        return match;
+                    }
+                });
+
+                messageText.innerHTML = textWithLineBreaks;
 
                 messageContent.appendChild(messageAuthor);
                 messageContent.appendChild(messageText);
