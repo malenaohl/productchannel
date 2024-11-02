@@ -981,36 +981,47 @@
 
                  // Handle mentions and line breaks
                 let textWithLineBreaks = message.text.replace(/\n/g, '<br>');
-    
+
                 const mentionRegex = /@([A-Za-z0-9\.'\-\s]+)/g;
-    
+
                 textWithLineBreaks = textWithLineBreaks.replace(mentionRegex, function(match, p1) {
                     const extractedText = p1.trim();
                     const teamMemberNames = Object.keys(teamMembers);
                     let foundName = null;
-    
-                    // Find the longest matching team member name
+                    let matchLength = 0;
+
+                    // Try to find a match by full name first
                     for (let i = 0; i < teamMemberNames.length; i++) {
                         const teamMemberName = teamMemberNames[i];
                         if (extractedText.startsWith(teamMemberName)) {
                             foundName = teamMemberName;
+                            matchLength = teamMemberName.length;
                             break;
                         }
                     }
-    
-                    console.log('Match:', match);
-                    console.log('Extracted text:', extractedText);
-                    console.log('Found name:', foundName);
-    
+
+                    // If no match by full name, try to match by first name
+                    if (!foundName) {
+                        for (let i = 0; i < teamMemberNames.length; i++) {
+                            const teamMemberName = teamMemberNames[i];
+                            const firstName = teamMemberName.split(' ')[0];
+                            if (extractedText.startsWith(firstName)) {
+                                foundName = teamMemberName;
+                                matchLength = firstName.length;
+                                break;
+                            }
+                        }
+                    }
+
                     if (foundName) {
                         const safeName = foundName.replace(/'/g, "\\'");
-                        const restOfText = extractedText.substring(foundName.length);
-                        return `<a href="#" class="mention" onclick="openDrawer('${safeName}'); return false;">@${foundName}</a>${restOfText}`;
+                        const restOfText = extractedText.substring(matchLength);
+                        return `<a href="#" class="mention" onclick="openDrawer('${safeName}'); return false;">@${extractedText.substring(0, matchLength)}</a>${restOfText}`;
                     } else {
                         return match;
                     }
                 });
-    
+
                 messageText.innerHTML = textWithLineBreaks;
 
                 messageContent.appendChild(messageAuthor);
