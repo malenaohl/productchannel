@@ -926,7 +926,477 @@
                     }
                 ]
             },
-            // ... (Other workspaces remain unchanged)
+        'Airtable': {
+                'channelDescription': "AI-generated fan fiction of Airtable’s product channel. Select another company from the top left corner.",
+                'messages': [
+                    {
+                        'author': 'Cora Lee',
+                        'time': '2:15 PM',
+                        'text': "team - been diving into the ProductCentral feedback from our enterprise beta users\nbiggest thing coming up: they want more flexibility in how AI insights are visualized\nespecially for the customer feedback synthesis part",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Lauren Chen',
+                        'time': '2:16 PM',
+                        'text': "interesting - what kind of visualizations are they looking for?\nwe already have the standard airtable views (grid/kanban/gantt/etc)",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Cora Lee',
+                        'time': '2:17 PM',
+                        'text': "they want more \"ambient intelligence\" type views\nlike auto-clustering of feedback themes\nor showing how feedback evolves over time\nbasically ways to spot patterns they wouldn't see in a regular grid view",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Martin Thompson',
+                        'time': '2:18 PM',
+                        'text': "this could be really powerful for product strategy\nimagine being able to see how customer needs cluster around different parts of the product\nor how sentiment changes after major releases",
+                        'reactions': [{'emoji': '🚀', 'count': 1}]
+                    },
+                    {
+                        'author': 'Rahul Singh',
+                        'time': '2:19 PM',
+                        'text': "technically feasible but we'd need to think carefully about the AI architecture\nshould we:\n\n• pre-compute these insights and store them\n• generate them on demand\n• trade-off between responsiveness and freshness 🤔",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Felix Reyes',
+                        'time': '2:20 PM',
+                        'text': "if we're processing customer feedback from multiple sources (zendesk, salesforce, etc)\nmight make sense to have a hybrid approach\ncache the heavy computation, update incrementally as new data comes in",
+                        'reactions': [{'emoji': '👍', 'count': 2}]
+                    },
+                    {
+                        'author': 'Vince Brenner',
+                        'time': '2:21 PM',
+                        'text': "+1 to hybrid approach\nwe could leverage our existing sync infrastructure\nbut we'd need to extend the schema to store these new insight types",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Dan Redman',
+                        'time': '2:22 PM',
+                        'text': "love this direction\nespecially if we can tie it to our \"source of truth\" story\nshowing insights that literally wouldn't be possible without having all product data in one place",
+                        'reactions': [{'emoji': '💡', 'count': 1}]
+                    },
+                    {
+                        'author': 'Martin Thompson',
+                        'time': '2:23 PM',
+                        'text': "what if we made this part of the core value prop?\n\"turn your product data into predictive insights\"\ncould be a major differentiator vs traditional roadmapping tools",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Lauren Chen',
+                        'time': '2:24 PM',
+                        'text': "yes! and we could extend this beyond just VoC\nimagine applying the same pattern to:\n\n• resource allocation\n• timeline predictions\n• dependency mapping",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Cora Lee',
+                        'time': '2:25 PM',
+                        'text': "i can start mocking up some visualization concepts\nthinking we could use color + clustering to show:\n\n• feedback volume\n• sentiment trends\n• theme relationships\n• priority predictions",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Felix Reyes',
+                        'time': '2:26 PM',
+                        'text': "we should also think about how this scales with data volume\nmaybe progressive loading for larger datasets?\ncould show high-level patterns first, then drill into details",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Rahul Singh',
+                        'time': '2:27 PM',
+                        'text': "we could use our interface magic to make it feel instant\nstart with cached high-level insights\nthen stream in real-time updates as we process new data",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Dan Redman',
+                        'time': '2:28 PM',
+                        'text': "this feels like exactly what enterprise product teams need\nlet's focus on making the insights actionable though\nevery visualization should lead to clear next steps",
+                        'reactions': [{'emoji': '✅', 'count': 1}]
+                    },
+                    {
+                        'author': 'Martin Thompson',
+                        'time': '2:29 PM',
+                        'text': "agreed - should connect directly to resource planning\nif we spot an emerging customer need\nshould be able to instantly see if we have bandwidth to address it",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Lauren Chen',
+                        'time': '2:30 PM',
+                        'text': "i'll update the launch deck to emphasize this more\n\"turn customer signals into product decisions\"\nfeels like a stronger story than just \"unified product development\"",
+                        'reactions': [{'emoji': '🎯', 'count': 1}]
+                    },
+                    {
+                        'author': 'Cora Lee',
+                        'time': '2:31 PM',
+                        'text': "perfect! i'll work on the new visualization prototypes\n@Felix @Rahul let's sync tomorrow on technical feasibility?",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Felix Reyes',
+                        'time': '2:31 PM',
+                        'text': "sounds good! will bring some ideas for the progressive loading approach",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Rahul Singh',
+                        'time': '2:32 PM',
+                        'text': "👍 will prep some thoughts on the insight computation architecture",
+                        'reactions': []
+                    }
+                ]
+            },
+               'Figma': {
+                'channelDescription': "AI-generated fan fiction of Figma’s product channel. Select another company from the top left corner.",
+                'messages': [
+                    {
+                        'author': 'Felix Reyes',
+                        'time': '3:45 PM',
+                        'text': "hey team, we need to talk about security for embedkit 2.0\nwith all the new browser privacy changes (ITP, Privacy Sandbox), our current embed auth approach isn't future-proof\nseeing issues in our beta where embeds break in some privacy-focused browsers 🚨",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Rahul Singh',
+                        'time': '3:46 PM',
+                        'text': "yeah, been looking into this\nthird-party cookies are basically dying\nwe need a more robust auth solution that works with Storage Access API",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Lauren Chen',
+                        'time': '3:47 PM',
+                        'text': "how many customers are impacted by this?\nespecially concerned about our enterprise customers who embed figma in their internal tools",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Martin Thompson',
+                        'time': '3:48 PM',
+                        'text': "just checked the data\n~15% of embed loads are failing in safari\nexpect this to get worse as chrome rolls out similar changes",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Vince Brenner',
+                        'time': '3:49 PM',
+                        'text': "we could use the Storage Access API\nbut that means we need to restructure how embeds handle auth\nalso thinking we should require origin registration for prototype embeds",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Felix Reyes',
+                        'time': '3:50 PM',
+                        'text': "exactly what i was thinking\nif we require oauth apps to register allowed origins\nwe can prevent prototype events from leaking to unknown domains",
+                        'reactions': [{'emoji': '👍', 'count': 2}]
+                    },
+                    {
+                        'author': 'Cora Lee',
+                        'time': '3:51 PM',
+                        'text': "from a UI perspective, we need to make origin registration super clear\nespecially since it's a new requirement\ncould we add an origins section to the oauth app dashboard?",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Dan Redman',
+                        'time': '3:52 PM',
+                        'text': "this feels like the right direction\nsecurity has to be rock solid, especially for enterprise\nwe can use this as an opportunity to clean up our embed architecture too",
+                        'reactions': [{'emoji': '🔒', 'count': 1}]
+                    },
+                    {
+                        'author': 'Lauren Chen',
+                        'time': '3:53 PM',
+                        'text': "should we grandfather existing embeds?\nor set a migration deadline?",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Rahul Singh',
+                        'time': '3:54 PM',
+                        'text': "recommend migration deadline for prototype embeds\nsimple file embeds can stay on v1 indefinitely\nbut prototype message passing needs the new security model",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Felix Reyes',
+                        'time': '3:55 PM',
+                        'text': "+1 to that split approach\nalso thinking we should move to embed.figma.com domain\nmakes it clearer these are v2 embeds",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Martin Thompson',
+                        'time': '3:56 PM',
+                        'text': "what's our migration timeline looking like?\nneed to give customers enough heads up",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Vince Brenner',
+                        'time': '3:57 PM',
+                        'text': "looking at browser roadmaps\nsuggest Dec 5th deadline\nthat's before the major privacy changes ship",
+                        'reactions': [{'emoji': '📅', 'count': 1}]
+                    },
+                    {
+                        'author': 'Cora Lee',
+                        'time': '3:58 PM',
+                        'text': "we should make the migration path super clear in the docs\nmaybe even build a migration helper tool?",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Lauren Chen',
+                        'time': '3:59 PM',
+                        'text': "love that idea\ncould detect v1 embeds and generate v2 equivalent code",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Dan Redman',
+                        'time': '4:00 PM',
+                        'text': "great discussion everyone. let's move forward with:\n\n• new embed.figma.com domain\n• Storage Access API support\n• required origin registration for prototypes\n• Dec 5th deadline for prototype embeds\n• migration helper tool",
+                        'reactions': [{'emoji': '✅', 'count': 1}]
+                    },
+                    {
+                        'author': 'Felix Reyes',
+                        'time': '4:01 PM',
+                        'text': "i'll start on the Storage Access API integration\n@Rahul want to pair on the origin validation logic?",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Rahul Singh',
+                        'time': '4:01 PM',
+                        'text': "👍 blocked off tomorrow morning",
+                        'reactions': []
+                    }
+                ]
+            },
+
+                'Webflow': {
+                'channelDescription': "AI-generated fan fiction of Webflow's product channel. Select another company from the top left corner.",
+                'messages': [
+                    {
+                        'author': 'Martin Thompson',
+                        'time': '1:15 PM',
+                        'text': "hey team - need input on the forms revamp\nbeen diving into feedback from our enterprise customers\nbig theme: they want more control without leaving the designer\nalso lots of requests for better bot protection that doesn't kill conversion rates",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Lauren Chen',
+                        'time': '1:16 PM',
+                        'text': "yeah the context switching between designer and dashboard is a huge pain point\nespecially for marketing teams managing multiple sites\nsaw this come up in our last few user interviews",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Cora Lee',
+                        'time': '1:17 PM',
+                        'text': "we could bring everything into a unified form settings panel in the designer\ntabs for connections, notifications, security etc\nwould make it way easier to see everything at once",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Felix Reyes',
+                        'time': '1:18 PM',
+                        'text': "for bot prevention, we could do something smart with browser fingerprinting and behavior analysis\nthrow in some hidden honeypot fields too\nand do it all without those annoying captchas",
+                        'reactions': [{'emoji': '🚫', 'count': 1}]
+                    },
+                    {
+                        'author': 'Rahul Singh',
+                        'time': '1:19 PM',
+                        'text': "we could also use our existing site traffic patterns to detect unusual submission behavior\nlike if we see weird patterns from an IP or browser fingerprint, we increase security automatically",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Vince Brenner',
+                        'time': '1:20 PM',
+                        'text': "+1 to adaptive security\nbut we need to be careful about false positives\nmaybe add an option for customers to review blocked submissions?",
+                        'reactions': [{'emoji': '👍', 'count': 2}]
+                    },
+                    {
+                        'author': 'Dan Redman',
+                        'time': '1:21 PM',
+                        'text': "really like where this is headed\nbringing everything into the designer just makes sense\nplus the bot prevention approach feels solid",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Lauren Chen',
+                        'time': '1:22 PM',
+                        'text': "what about connected apps visibility?\nlot of customers don't realize their forms are connected to multiple places\nleads to duplicate data and confusion",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Cora Lee',
+                        'time': '1:23 PM',
+                        'text': "what if we added a visual connection map?\ncould show form data flow, field mapping, sync status\nkind of like how we visualize interactions now",
+                        'reactions': [{'emoji': '💡', 'count': 1}]
+                    },
+                    {
+                        'author': 'Felix Reyes',
+                        'time': '1:24 PM',
+                        'text': "that would work really well with the new APIs\nwe could show real-time sync status and let users fix mapping issues right there in the interface",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Martin Thompson',
+                        'time': '1:25 PM',
+                        'text': "also thinking about our logicflow customers\nthey often need different form settings for different conditions\nshould we support that?",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Rahul Singh',
+                        'time': '1:26 PM',
+                        'text': "definitely doable\nwe could extend the logic system for conditional notifications, dynamic mapping, different spam settings\nbut it would take some work to get right",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Vince Brenner',
+                        'time': '1:27 PM',
+                        'text': "we'd need to think about the performance impact\nespecially for sites with lots of forms and complex logic",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Lauren Chen',
+                        'time': '1:28 PM',
+                        'text': "what if we start with the unified settings panel and bot prevention for v1\nthen tackle conditional logic in phase 2?\nfeels like that would solve the most pressing pain points",
+                        'reactions': [{'emoji': '🎯', 'count': 1}]
+                    },
+                    {
+                        'author': 'Dan Redman',
+                        'time': '1:29 PM',
+                        'text': "agreed - let's get the unified settings, bot prevention, and app connections solid first\nwe can tackle the conditional stuff and more advanced features after that",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Cora Lee',
+                        'time': '1:30 PM',
+                        'text': "i'll start on the settings panel designs\nthinking we can use our new component system to make it feel native",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Felix Reyes',
+                        'time': '1:31 PM',
+                        'text': "cool, i'll work on the bot prevention poc\nwill share some tests comparing different approaches",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Martin Thompson',
+                        'time': '1:32 PM',
+                        'text': "sounds good, i'll update the spec\nshould we do a proper customer beta for this one?",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Lauren Chen',
+                        'time': '1:33 PM',
+                        'text': "definitely - already have a few enterprise customers asking to test\nespecially the bot prevention features",
+                        'reactions': [{'emoji': '🚀', 'count': 1}]
+                    },
+                    {
+                        'author': 'Rahul Singh',
+                        'time': '1:33 PM',
+                        'text': "sounds good\ni'll start on the api extensions for better app integrations",
+                        'reactions': []
+                    }
+                ]
+            },
+                'Intercom': {
+                'channelDescription': "AI-generated fan fiction of Intercom's product channel. Select another company from the top left corner.",
+                'messages': [
+                    {
+                        'author': 'Dan Redman',
+                        'time': '2:45 PM',
+                        'text': "just came from a call with our biggest enterprise customer\nthey're struggling to understand the combined impact of human + AI support\nespecially now that Fin is handling more conversations\nthink this new overview report could be a game changer for support leads",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Lauren Chen',
+                        'time': '2:46 PM',
+                        'text': "100% - been hearing this from other customers too\nthey keep asking how to prove the ROI of Fin to their leadership\nand right now it's super manual to piece that data together",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Martin Thompson',
+                        'time': '2:47 PM',
+                        'text': "the sankey chart showing the conversation flow is going to help a lot with that\nmakes it really obvious where volume is going and what's actually getting resolved",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Cora Lee',
+                        'time': '2:48 PM',
+                        'text': "yeah though we need to be careful about cognitive load\nthere's a lot of data to show and these support leads are usually context switching between meetings",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Felix Reyes',
+                        'time': '2:49 PM',
+                        'text': "heads up on the sankey - we're seeing some perf issues when customers have huge conversation volumes\nmight need to add some date range limits or sampling for mega customers",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Rahul Singh',
+                        'time': '2:50 PM',
+                        'text': "we could cache the heavy calculations\nupdate them hourly instead of real-time\nmost of these metrics don't need to be up-to-the-minute anyway",
+                        'reactions': [{'emoji': '👍', 'count': 2}]
+                    },
+                    {
+                        'author': 'Vince Brenner',
+                        'time': '2:51 PM',
+                        'text': "yeah and we should probably think about data retention\nespecially for those year-over-year comparisons\nstorage costs could get wild at scale",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Lauren Chen',
+                        'time': '2:52 PM',
+                        'text': "what if we defaulted to showing last 30 days\nbut let them expand to longer ranges if they want?\nthat's what most customers look at anyway",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Cora Lee',
+                        'time': '2:53 PM',
+                        'text': "going to need a really clear way to show when data is cached vs real-time\nsupport teams get antsy when numbers don't match across different screens",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Martin Thompson',
+                        'time': '2:54 PM',
+                        'text': "speaking of matching numbers\nwe need to decide how to handle the old overview report transition\nlots of customers have built processes around those metrics",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Dan Redman',
+                        'time': '2:55 PM',
+                        'text': "let's keep both reports running for a bit\nbut make it clear the old one's going away\ngive customers time to update their workflows",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Felix Reyes',
+                        'time': '2:56 PM',
+                        'text': "could we add an export option?\nsome customers might want to pull this data into their own dashboards",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Rahul Singh',
+                        'time': '2:57 PM',
+                        'text': "yeah we could expose this through the analytics api\nalready have most of the endpoints we need\njust need to add the new Fin metrics",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Cora Lee',
+                        'time': '2:58 PM',
+                        'text': "i can mock up some education tooltips for the new metrics\nespecially around how Fin's resolution rate is calculated\nthat's been confusing in user testing",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Lauren Chen',
+                        'time': '2:59 PM',
+                        'text': "good call - and we should probably do some webinars for this launch\nit's a pretty big change to how they'll analyze their support ops",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Dan Redman',
+                        'time': '3:00 PM',
+                        'text': "alright, sounds like we're aligned on:\n\n• ship with 30 day default\n• cached data for big customers\n• keep old report temporarily\n• add export options\n• focus on education",
+                        'reactions': [{'emoji': '✅', 'count': 1}]
+                    },
+                    {
+                        'author': 'Martin Thompson',
+                        'time': '3:01 PM',
+                        'text': "perfect, i'll update the launch plan\n@Lauren want to work on the webinar content?",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Lauren Chen',
+                        'time': '3:01 PM',
+                        'text': "yep, already started an outline\nwill share it later today",
+                        'reactions': []
+                    }
+                ]
+            },
         };
 
         function openDrawer(name) {
