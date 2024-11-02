@@ -931,17 +931,23 @@
                 const messageText = document.createElement('div');
                 messageText.className = 'message-text';
 
-                        // Handle mentions and line breaks
+                // Handle mentions and line breaks
                 let textWithLineBreaks = message.text.replace(/\n/g, '<br>');
-        
+
                 // Updated mention regex to handle more characters
                 const mentionRegex = /@([A-Za-z0-9\s\.'\-]+)/g;
-        
+
                 textWithLineBreaks = textWithLineBreaks.replace(mentionRegex, function(match, p1) {
-                    const name = p1.trim();
-                    if (teamMembers[name]) {
+                const name = p1.trim();
+                const normalizedName = name.toLowerCase();
+                const teamMemberKeys = Object.keys(teamMembers);
+                const foundName = teamMemberKeys.find(key => key.toLowerCase() === normalizedName);
+                console.log('Match:', match);
+                console.log('Extracted name:', name);
+                console.log('Found name in teamMembers:', foundName);
+                if (foundName) {
                         // Escape single quotes in the name
-                        const safeName = name.replace(/'/g, "\\'");
+                        const safeName = foundName.replace(/'/g, "\\'");
                         return `<a href="#" class="mention" onclick="openDrawer('${safeName}'); return false;">@${name}</a>`;
                     } else {
                         return match;
