@@ -665,73 +665,73 @@
                     {
                         'author': 'Martin Thompson',
                         'time': '09:14 AM',
-                        'text': "hey team, wanted to get some quick feedback on the doc subscriptions feature we're working on 🤔\nthinking we should make it so everyone on the team gets auto-subscribed to all project docs by default. that way no one misses anything important",
+                        'text': "hey team, wanted to get some quick feedback on the doc subscriptions feature we're working on 🤔<br>thinking we should make it so everyone on the team gets auto-subscribed to all project docs by default. that way no one misses anything important",
                         'reactions': []
                     },
                     {
                         'author': 'Lauren Chen',
                         'time': '09:15 AM',
-                        'text': "wait wouldn't that create a ton of noise though?\nlike if i'm not involved in the design system project, do i need updates about their discovery docs?",
+                        'text': "wait wouldn't that create a ton of noise though?<br>like if i'm not involved in the design system project, do i need updates about their discovery docs?",
                         'reactions': [{'emoji': '👍', 'count': 1}]
                     },
                     {
                         'author': 'Vince Brenner',
                         'time': '09:16 AM',
-                        'text': "+1 to Lauren's concern. we'd need to build some pretty robust notification filtering\nthe engineering effort to handle that scale of notifications properly would be significant",
+                        'text': "+1 to Lauren's concern. we'd need to build some pretty robust notification filtering<br>the engineering effort to handle that scale of notifications properly would be significant",
                         'reactions': []
                     },
                     {
                         'author': 'Cora Lee',
                         'time': '09:17 AM',
-                        'text': "from a design perspective, i'm worried about notification fatigue\nusers already get a lot of notifications from issues and comments. adding every doc update could push people to just ignore everything",
+                        'text': "from a design perspective, i'm worried about notification fatigue<br>users already get a lot of notifications from issues and comments. adding every doc update could push people to just ignore everything",
                         'reactions': []
                     },
                     {
                         'author': 'Felix Reyes',
                         'time': '09:18 AM',
-                        'text': "actually building off what Cora said\nwe could do something smarter with the auto-subscribe logic\nlike maybe only auto-subscribe people who are actually involved with the project? 🤔",
-                        'reactions': [{'emoji': '💡', 'count': 1}]
+                        'text': "actually building off what Cora said<br>we could do something smarter with the auto-subscribe logic<br>like maybe only auto-subscribe people who are actually involved with the project? 🤔",
+                        'reactions': []
                     },
                     {
                         'author': 'Rahul Singh',
                         'time': '09:19 AM',
-                        'text': "that makes more sense technically too\nwe already have the project member/lead relationships in the data model\nwould be pretty straightforward to use those",
+                        'text': "that makes more sense technically too<br>we already have the project member/lead relationships in the data model<br>would be pretty straightforward to use those",
                         'reactions': []
                     },
                     {
                         'author': 'Martin Thompson',
                         'time': '09:20 AM',
-                        'text': "ok yeah i see what you mean about the noise\nwhat if we did:\n\n• auto-subscribe doc creator\n• auto-subscribe project leads/members for project docs\n• auto-subscribe initiative owner for initiative docs",
+                        'text': "ok yeah i see what you mean about the noise<br>what if we did:<br><br>• auto-subscribe doc creator<br>• auto-subscribe project leads/members for project docs<br>• auto-subscribe initiative owner for initiative docs",
                         'reactions': [{'emoji': '👍', 'count': 2}]
                     },
                     {
                         'author': 'Lauren Chen',
                         'time': '09:21 AM',
-                        'text': "that feels more targeted 👍\nbut we should also let people manually subscribe others right?\nlike if i make a discovery doc i might want to add the designer even if they're not officially on the project yet",
+                        'text': "that feels more targeted 👍<br>but we should also let people manually subscribe others right?<br>like if i make a discovery doc i might want to add the designer even if they're not officially on the project yet",
                         'reactions': []
                     },
                     {
                         'author': 'Cora Lee',
                         'time': '09:22 AM',
-                        'text': "yes! and make it super obvious how to manage subscriptions\nmaybe a bell icon at the top of every doc?",
+                        'text': "yes! and make it super obvious how to manage subscriptions<br>maybe a bell icon at the top of every doc?",
                         'reactions': [{'emoji': '🔔', 'count': 1}]
                     },
                     {
                         'author': 'Vince Brenner',
                         'time': '09:23 AM',
-                        'text': "@Dan Redman what do you think about this direction?\nauto-subscribe based on relevant roles + manual subscription options?",
+                        'text': "@Dan Redman what do you think about this direction?<br>auto-subscribe based on relevant roles + manual subscription options?",
                         'reactions': []
                     },
                     {
                         'author': 'Dan Redman',
                         'time': '09:25 AM',
-                        'text': "love where this landed. much better than blanket subscriptions\nlet's also make sure we notify on:\n\n• content changes\n• comments/replies\n• moves/deletions\n\nthose feel like the key events people need to know about",
+                        'text': "love where this landed. much better than blanket subscriptions<br>let's also make sure we notify on:<br><br>• content changes<br>• comments/replies<br>• moves/deletions<br><br>those feel like the key events people need to know about",
                         'reactions': [{'emoji': '✅', 'count': 1}]
                     },
                     {
                         'author': 'Martin Thompson',
                         'time': '09:26 AM',
-                        'text': "perfect, this is way more scalable than my original idea 😅\ni'll update the spec with this approach",
+                        'text': "perfect, this is way more scalable than my original idea 😅<br>i'll update the spec with this approach",
                         'reactions': []
                     },
                     {
