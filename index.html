@@ -620,53 +620,119 @@
             'Notion': {
                 'channelDescription': "AI-generated fan fiction of Notion’s product channel. Select another company from the top left corner.",
                 'messages': [
-                    {
+                                {
                         'author': 'Lauren Chen',
-                        'time': '09:12 AM',
-                        'text': "Hey team, for the new AI connectors with Google Docs, Sheets, and Slides, I was thinking Notion AI could search across all connected sources by default for each query. This way, users don’t have to specify the source every time and can get broader answers.",
+                        'time': '11:21 AM',
+                        'text': "hey team 👋 we need to make some decisions about the AI connectors release\nright now we're planning to launch with Google Workspace + Slack, but there's debate around the search experience\ncurrently thinking we should show all results from connected apps by default, but i'm worried about overwhelming users",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Cora Lee',
+                        'time': '11:22 AM',
+                        'text': "yeah that's been coming up in user research\npeople get anxious when they see results from too many places at once\nespecially when some are more relevant than others",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Martin Thompson',
+                        'time': '11:23 AM',
+                        'text': "what if we defaulted to searching just Notion content\nand had a dropdown to expand to connected apps? 🤔",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Felix Reyes',
+                        'time': '11:24 AM',
+                        'text': "that could work technically\nbut we'd need to figure out how to handle the \"expand search\" interaction without making the AI response feel slow\nwould users wait for a second round of results?",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Rahul Singh',
+                        'time': '11:25 AM',
+                        'text': "we could stream the results\nstart with Notion content immediately\nthen stream in connected app results as they come in\nsimilar to how ChatGPT streams tokens",
                         'reactions': []
                     },
                     {
                         'author': 'Vince Brenner',
-                        'time': '09:15 AM',
-                        'text': "Might be overkill, though. Searching every app each time could slow down responses, especially as we add more connectors. Maybe we default to searching Notion first and let users select additional sources as needed?",
-                        'reactions': [{'emoji': '👍', 'count': 2}]
+                        'time': '11:26 AM',
+                        'text': "streaming would def feel more responsive\nbut we'd need to handle permissions really carefully\nmaking sure we respect access rights across all connected apps in real-time",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Lauren Chen',
+                        'time': '11:27 AM',
+                        'text': "love the streaming idea\nalso should we surface which apps have the most relevant results?\nlike \"found most matches in Google Docs\" or something",
+                        'reactions': []
                     },
                     {
                         'author': 'Cora Lee',
-                        'time': '09:18 AM',
-                        'text': "Agreed, performance is one thing, but also, users might want more control over where their info is coming from. We could add a dropdown to let users quickly pick the app or teamspace they want Notion AI to search. Keeps the experience fast and more focused.",
+                        'time': '11:28 AM',
+                        'text': "ooh yes! we could even show little app icons next to results\nand maybe group them by source?\nwould make it super scannable",
                         'reactions': []
-                    },
-                    {
-                        'author': 'Felix Reyes',
-                        'time': '09:21 AM',
-                        'text': "I can work that in. We could even save recent source selections for the user, so if they keep pulling info from Slack or Docs, they won’t have to pick it every time.",
-                        'reactions': [{'emoji': '🚀', 'count': 1}]
-                    },
-                    {
-                        'author': 'Rahul Singh',
-                        'time': '09:24 AM',
-                        'text': "That works, but we should also make sure the sources are clearly cited. If AI pulls data from different sources, users need to know where each piece is coming from, especially if they’re making decisions based on it.",
-                        'reactions': [{'emoji': '✅', 'count': 2}]
-                    },
-                    {
-                        'author': 'Martin Thompson',
-                        'time': '09:28 AM',
-                        'text': "Right, citing sources is key. For permissions, I’m assuming AI will respect app access levels so users only see what they have access to, correct?",
-                        'reactions': []
-                    },
-                    {
-                        'author': 'Felix Reyes',
-                        'time': '09:30 AM',
-                        'text': "Yep, Notion AI will only pull content the user already has permission to view. So, if they don’t have access to certain Docs, those won’t appear in the results.",
-                        'reactions': [{'emoji': '👍', 'count': 2}]
                     },
                     {
                         'author': 'Dan Redman',
-                        'time': '09:33 AM',
-                        'text': "Good approach here. Let’s make sure we balance speed with relevance: start with Notion by default, let users quickly add or change sources, and keep clear source citations. This way, users can trust the AI’s responses and trace them back if needed.",
+                        'time': '11:29 AM',
+                        'text': "digging the direction here\nkey thing is making sure quality > quantity\nrather surface 3 highly relevant results than 10 mediocre ones",
                         'reactions': []
+                    },
+                    {
+                        'author': 'Martin Thompson',
+                        'time': '11:30 AM',
+                        'text': "agreed. what about relevance scoring?\ncould we weight results based on:\n\n• recency\n• frequency of matches\n• user interaction history",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Felix Reyes',
+                        'time': '11:31 AM',
+                        'text': "we could leverage our existing search ranking algo as a starting point\nwould need to adapt it for the new data sources though",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Rahul Singh',
+                        'time': '11:32 AM',
+                        'text': "yeah and we should consider latency\nsome apis are slower than others\nmaybe add timeouts per connector?",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Lauren Chen',
+                        'time': '11:33 AM',
+                        'text': "good call on timeouts\nalso thinking about the \"create new doc from results\" feature\nshould probably emphasize that more in the UI",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Cora Lee',
+                        'time': '11:34 AM',
+                        'text': "yeah! what if after every search we showed a few suggested next actions?\nlike \"create update email\" or \"make meeting agenda\"",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Martin Thompson',
+                        'time': '11:35 AM',
+                        'text': "love that\ncould even customize suggestions based on the type of content found\nlike if we find lots of design files → \"create design review doc\"",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Rahul Singh',
+                        'time': '11:36 AM',
+                        'text': "technically feasible\nwe'd just need a mapping of content types → suggested actions\ncould start simple and expand based on usage data",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Dan Redman',
+                        'time': '11:37 AM',
+                        'text': "great ideas everyone. let's move forward with:\n\n• streaming results, starting w/ Notion content\n• clear grouping by source\n• smart suggestions for next actions\n• timeout handling for slower APIs",
+                        'reactions': [{'emoji': '👍', 'count': 3}]
+                    },
+                    {
+                        'author': 'Lauren Chen',
+                        'time': '11:38 AM',
+                        'text': "perfect! i'll update the spec\n@Cora want to collaborate on the results UI tomorrow?",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Cora Lee',
+                        'time': '11:38 AM',
+                        'text': "yes! will schedule something 🎨",
+                        'reactions': [{'emoji': '👍', 'count': 1}]
                     }
                 ]
             },
