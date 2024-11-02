@@ -764,50 +764,98 @@
                 'messages': [
                     {
                         'author': 'Martin Thompson',
-                        'time': '09:12 AM',
-                        'text': "Hey team, for the new billing grace period feature, I’m thinking we set the default to a 72-hour delay on all usage-based invoices. This would give customers plenty of time to add delayed usage data before invoices are finalized.",
-                        'reactions': []
-                    },
-                    {
-                        'author': 'Vince Brenner',
-                        'time': '09:15 AM',
-                        'text': "72 hours might be too long as a blanket rule. If customers are invoicing frequently, this could delay their collections more than they expect. Maybe we should set a shorter default and allow them to extend as needed.",
-                        'reactions': [{'emoji': '👍', 'count': 2}]
-                    },
-                    {
-                        'author': 'Cora Lee',
-                        'time': '09:18 AM',
-                        'text': "Good point. A long grace period also adds complexity to the UI, especially if they have different grace periods for different use cases. If we keep a shorter default, we’d also need a clear way for customers to create rules for specific cases, like usage-based invoices.",
+                        'time': '10:03 AM',
+                        'text': "team, looking for input on the invoice grace period feature implementation\ncurrent proposal: single global grace period setting that applies to all invoices\nseems simpler to implement and explain to users",
                         'reactions': []
                     },
                     {
                         'author': 'Lauren Chen',
-                        'time': '09:21 AM',
-                        'text': "Yeah, I agree. A 72-hour default might lead to confusion, especially if customers expect faster collections on non-usage-based invoices. What if we set the default to something short, like 1 hour, and then let them configure longer grace periods based on specific conditions?",
-                        'reactions': [{'emoji': '👍', 'count': 3}]
-                    },
-                    {
-                        'author': 'Felix Reyes',
-                        'time': '09:23 AM',
-                        'text': "That works technically. We could add a flexible rules engine where they set conditions, like 72 hours for usage-based invoices only. The default could stay at 1 hour for everything else, and the rules would kick in only when the conditions are met.",
+                        'time': '10:04 AM',
+                        'text': "i've been talking to some of our larger customers about this\nthey actually need different grace periods for different types of usage\nespecially ones with both subscription and usage-based billing",
                         'reactions': []
                     },
                     {
                         'author': 'Rahul Singh',
-                        'time': '09:29 AM',
-                        'text': "Also, we should make sure customers can create different grace periods for complex scenarios. For example, they might want a 72-hour grace for usage data but keep 1-hour finalization for basic subscriptions. We’d need a way to handle these multiple rule layers and prioritize the longest grace period if there are conflicting rules.",
-                        'reactions': [{'emoji': '✅', 'count': 2}]
+                        'time': '10:05 AM',
+                        'text': "that's an interesting point Lauren\nwe'd need to consider how grace periods interact with subscription cycles too\nif someone sets a 72hr grace period on a daily subscription, they could end up with overlapping billing periods 🤔",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Felix Reyes',
+                        'time': '10:06 AM',
+                        'text': "definitely need to prevent that edge case\nwe could add validation to ensure grace period < subscription period",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Vince Brenner',
+                        'time': '10:07 AM',
+                        'text': "another consideration: webhook failures\nshould we enforce a standard grace period for failed webhook deliveries?\nlonger grace period would give customers time to fix their endpoints",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Cora Lee',
+                        'time': '10:09 AM',
+                        'text': "from the UI side, we need to think about how to make these rules clear in the dashboard\nespecially if we're supporting multiple conditions:\n\n• subscription-based\n• usage-based\n• combination of both",
+                        'reactions': []
                     },
                     {
                         'author': 'Martin Thompson',
-                        'time': '09:34 AM',
-                        'text': "So, we set the default to 1 hour, and customers can create specific rules for usage-based invoices with a max 72-hour grace. If there’s a mix of line items, the invoice uses the longest grace period, so no usage data is missed.",
-                        'reactions': [{'emoji': '👍', 'count': 3}, {'emoji': '🎯', 'count': 1}]
+                        'time': '10:10 AM',
+                        'text': "ok, so maybe instead of a single setting, we need:\n\n• account default (1hr)\n• configurable rules with conditions\n• rule ordering for conflict resolution",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Rahul Singh',
+                        'time': '10:11 AM',
+                        'text': "+1 to rule ordering\nsuggestion: for invoices that match multiple rules, we should use the longer grace period\nsafer to give more time than less",
+                        'reactions': [{'emoji': '👍', 'count': 2}]
+                    },
+                    {
+                        'author': 'Lauren Chen',
+                        'time': '10:12 AM',
+                        'text': "absolutely agree with Rahul\nalso we should make it clear that first subscription invoice finalizes immediately\nthat's caught a few customers by surprise in beta testing",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Felix Reyes',
+                        'time': '10:13 AM',
+                        'text': "implementation note: we'll need to modify the meters API to handle the variable grace periods\nand add validation for the 24hr usage cancellation window",
+                        'reactions': []
                     },
                     {
                         'author': 'Dan Redman',
-                        'time': '09:37 AM',
-                        'text': "This makes sense. Let’s keep the default fast (1 hour) for simpler use cases and give customers flexibility to extend for usage-based needs. We’ll need the UI to make configuring and viewing these rules as straightforward as possible so customers can clearly see which invoices are in draft and for how long.",
+                        'time': '10:14 AM',
+                        'text': "important that we get this right. let's move forward with:\n\n• rule-based approach with account default fallback\n• 72hr grace period for webhook failures\n• conservative resolution (longer period wins) for multiple matches\n• clear validation preventing grace period >= subscription period\n\nwe'll need to document regional compliance considerations clearly",
+                        'reactions': [{'emoji': '✅', 'count': 1}]
+                    },
+                    {
+                        'author': 'Martin Thompson',
+                        'time': '10:15 AM',
+                        'text': "thanks Dan - will add the compliance section to the spec\nshould we mention the 24hr limit on canceling usage events?",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Lauren Chen',
+                        'time': '10:16 AM',
+                        'text': "definitely include that\nand we should emphasize that canceled usage won't trigger correction invoices\nthat's been a common source of confusion",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Rahul Singh',
+                        'time': '10:17 AM',
+                        'text': "I'll start breaking down the technical implementation\n@Felix want to pair on the meters API modifications tomorrow?",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Felix Reyes',
+                        'time': '10:17 AM',
+                        'text': "👍 blocked off my morning for it",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Cora Lee',
+                        'time': '10:18 AM',
+                        'text': "working on the dashboard UI flows now\nwill share mockups in the design review tomorrow",
                         'reactions': []
                     }
                 ]
