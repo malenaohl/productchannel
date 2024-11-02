@@ -273,6 +273,7 @@
             margin-bottom: 10px;
             line-height: 1.6;
             font-size: 14px;
+            white-space: pre-wrap; /* Preserve line breaks */
         }
         .reactions {
             display: flex;
@@ -662,324 +663,146 @@
             'Linear': {
                 'channelDescription': "AI-generated fan fiction of Linear's product channel. Select another company from the top left corner.",
                 'messages': [
-                   'Linear': {
-    'channelDescription': "AI-generated fan fiction of Linear's product channel. Select another company from the top left corner.",
-    'messages': [
                     {
                         'author': 'Martin Thompson',
                         'time': '09:14 AM',
-                        'text': `hey team, wanted to get some quick feedback on the doc subscriptions feature we're working on 🤔
-            thinking we should make it so everyone on the team gets auto-subscribed to all project docs by default. that way no one misses anything important`,
+                        'text': "hey team, wanted to get some quick feedback on the doc subscriptions feature we're working on 🤔\nthinking we should make it so everyone on the team gets auto-subscribed to all project docs by default. that way no one misses anything important",
                         'reactions': []
                     },
                     {
                         'author': 'Lauren Chen',
                         'time': '09:15 AM',
-                        'text': `wait wouldn't that create a ton of noise though?
-            like if i'm not involved in the design system project, do i need updates about their discovery docs?`,
-                        'reactions': [{'emoji': '👍', 'count': 1}]
+                        'text': "wait wouldn't that create a ton of noise though?\nlike if i'm not involved in the design system project, do i need updates about their discovery docs?",
+                        'reactions': []
                     },
                     {
                         'author': 'Vince Brenner',
                         'time': '09:16 AM',
-                        'text': `+1 to Lauren's concern. we'd need to build some pretty robust notification filtering
-            the engineering effort to handle that scale of notifications properly would be significant`,
-                        'reactions': [{'emoji': '⚠️', 'count': 1}]
+                        'text': "+1 to Lauren's concern. we'd need to build some pretty robust notification filtering\nthe engineering effort to handle that scale of notifications properly would be significant",
+                        'reactions': []
                     },
                     {
                         'author': 'Cora Lee',
                         'time': '09:17 AM',
-                        'text': `from a design perspective, i'm worried about notification fatigue
-            users already get a lot of notifications from issues and comments. adding every doc update could push people to just ignore everything`,
+                        'text': "from a design perspective, i'm worried about notification fatigue\nusers already get a lot of notifications from issues and comments. adding every doc update could push people to just ignore everything",
                         'reactions': []
                     },
                     {
                         'author': 'Felix Reyes',
                         'time': '09:18 AM',
-                        'text': `actually building off what Cora said
-            we could do something smarter with the auto-subscribe logic
-            like maybe only auto-subscribe people who are actually involved with the project? 🤔`,
-                        'reactions': [{'emoji': '💡', 'count': 1}]
+                        'text': "actually building off what Cora said\nwe could do something smarter with the auto-subscribe logic\nlike maybe only auto-subscribe people who are actually involved with the project? 🤔",
+                        'reactions': []
                     },
                     {
                         'author': 'Rahul Singh',
                         'time': '09:19 AM',
-                        'text': `that makes more sense technically too
-            we already have the project member/lead relationships in the data model
-            would be pretty straightforward to use those`,
+                        'text': "that makes more sense technically too\nwe already have the project member/lead relationships in the data model\nwould be pretty straightforward to use those",
                         'reactions': []
                     },
                     {
                         'author': 'Martin Thompson',
                         'time': '09:20 AM',
-                        'text': `ok yeah i see what you mean about the noise
-            what if we did:<br><br>
-            • auto-subscribe doc creator<br>
-            • auto-subscribe project leads/members for project docs<br>
-            • auto-subscribe initiative owner for initiative docs`,
-                        'reactions': [{'emoji': '👍', 'count': 2}]
+                        'text': "ok yeah i see what you mean about the noise\nwhat if we did:\n\n• auto-subscribe doc creator\n• auto-subscribe project leads/members for project docs\n• auto-subscribe initiative owner for initiative docs",
+                        'reactions': []
                     },
                     {
                         'author': 'Lauren Chen',
                         'time': '09:21 AM',
-                        'text': `that feels more targeted 👍
-            but we should also let people manually subscribe others right?
-            like if i make a discovery doc i might want to add the designer even if they're not officially on the project yet`,
+                        'text': "that feels more targeted 👍\nbut we should also let people manually subscribe others right?\nlike if i make a discovery doc i might want to add the designer even if they're not officially on the project yet",
                         'reactions': []
                     },
                     {
                         'author': 'Cora Lee',
                         'time': '09:22 AM',
-                        'text': `yes! and make it super obvious how to manage subscriptions
-            maybe a bell icon at the top of every doc?`,
-                        'reactions': [{'emoji': '🔔', 'count': 1}]
+                        'text': "yes! and make it super obvious how to manage subscriptions\nmaybe a bell icon at the top of every doc?",
+                        'reactions': []
                     },
                     {
                         'author': 'Vince Brenner',
                         'time': '09:23 AM',
-                        'text': `@Dan Redman what do you think about this direction?
-            auto-subscribe based on relevant roles + manual subscription options?`,
+                        'text': "@Dan Redman what do you think about this direction?\nauto-subscribe based on relevant roles + manual subscription options?",
                         'reactions': []
                     },
                     {
                         'author': 'Dan Redman',
                         'time': '09:25 AM',
-                        'text': `love where this landed. much better than blanket subscriptions
-            let's also make sure we notify on:<br><br>
-            • content changes<br>
-            • comments/replies<br>
-            • moves/deletions<br><br>
-            those feel like the key events people need to know about`,
-                        'reactions': [{'emoji': '✅', 'count': 1}]
+                        'text': "love where this landed. much better than blanket subscriptions\nlet's also make sure we notify on:\n\n• content changes\n• comments/replies\n• moves/deletions\n\nthose feel like the key events people need to know about",
+                        'reactions': []
                     },
                     {
                         'author': 'Martin Thompson',
                         'time': '09:26 AM',
-                        'text': `perfect, this is way more scalable than my original idea 😅
-            i'll update the spec with this approach`,
+                        'text': "perfect, this is way more scalable than my original idea 😅\ni'll update the spec with this approach",
                         'reactions': []
                     },
                     {
                         'author': 'Felix Reyes',
                         'time': '09:26 AM',
-                        'text': `sweet, this'll be way easier to implement than the "everyone gets everything" approach 🙌`,
+                        'text': "sweet, this'll be way easier to implement than the \"everyone gets everything\" approach 🙌",
                         'reactions': []
                     },
                     {
                         'author': 'Rahul Singh',
                         'time': '09:27 AM',
-                        'text': `yep, we can get started on this. will create the tasks today 💪`,
+                        'text': "yep, we can get started on this. will create the tasks today 💪",
                         'reactions': []
                     }
                 ]
             },
-            'Airtable': {
-                'channelDescription': "AI-generated fan fiction of Airtable’s product channel. Select another company from the top left corner.",
+            'Stripe': {
+                'channelDescription': "AI-generated fan fiction of Stripe’s product channel. Select another company from the top left corner.",
                 'messages': [
                     {
-                        'author': 'Cora Lee',
-                        'time': '09:10 AM',
-                        'text': "Hey team! For ProductCentral, I was thinking we set it up so users get a full view of all their product data right away. No need to configure much—they can dive right into aggregated insights across feedback, roadmap, and resources.",
-                        'reactions': []
-                    },
-                    {
                         'author': 'Martin Thompson',
-                        'time': '09:13 AM',
-                        'text': "I like the idea of an easy start, but having all the data at once might overwhelm users. Product teams have different needs: some might prioritize customer feedback, others might care more about resourcing or roadmaps. Maybe we give them a few preset views based on typical workflows?",
-                        'reactions': [{'emoji': '👍', 'count': 2}]
-                    },
-                    {
-                        'author': 'Lauren Chen',
-                        'time': '09:16 AM',
-                        'text': "Yeah, agreed. Could we build out default dashboards for things like “Customer Insights,” “Resource Planning,” and “Roadmap”? This way, users can dive into the area they need most without feeling buried under everything else.",
-                        'reactions': [{'emoji': '✅', 'count': 1}]
+                        'time': '09:12 AM',
+                        'text': "Hey team, for the new billing grace period feature, I’m thinking we set the default to a 72-hour delay on all usage-based invoices. This would give customers plenty of time to add delayed usage data before invoices are finalized.",
+                        'reactions': []
                     },
                     {
                         'author': 'Vince Brenner',
-                        'time': '09:19 AM',
-                        'text': "Preset views make sense. From the engineering side, this would also make it easier for us to handle data loading. If users only see relevant data, the system can pull more efficiently, which should help with performance.",
+                        'time': '09:15 AM',
+                        'text': "72 hours might be too long as a blanket rule. If customers are invoicing frequently, this could delay their collections more than they expect. Maybe we should set a shorter default and allow them to extend as needed.",
+                        'reactions': [{'emoji': '👍', 'count': 2}]
+                    },
+                    {
+                        'author': 'Cora Lee',
+                        'time': '09:18 AM',
+                        'text': "Good point. A long grace period also adds complexity to the UI, especially if they have different grace periods for different use cases. If we keep a shorter default, we’d also need a clear way for customers to create rules for specific cases, like usage-based invoices.",
                         'reactions': []
                     },
                     {
-                        'author': 'Felix Reyes',
-                        'time': '09:22 AM',
-                        'text': "I can set up the backend to support this. We’d have dynamic data loads based on the selected view, so users aren’t pulling in unnecessary data for each section. Could even make it extensible for custom views in the future.",
-                        'reactions': [{'emoji': '🚀', 'count': 1}]
-                    },
-                    {
-                        'author': 'Rahul Singh',
-                        'time': '09:25 AM',
-                        'text': "Agreed on extensibility. Users might want to adapt the views as they go. Also, if we’re giving them AI insights, let’s make sure they can filter these insights—say, by product line, customer segment, or project phase. That should help them find the “signal” faster.",
-                        'reactions': [{'emoji': '🎯', 'count': 2}]
-                    },
-                    {
-                        'author': 'Martin Thompson',
-                        'time': '09:28 AM',
-                        'text': "So we’re thinking preset views with customizable filters. Each view surfaces AI-generated insights, but we’d still allow deeper drill-down if they need it.",
+                        'author': 'Lauren Chen',
+                        'time': '09:21 AM',
+                        'text': "Yeah, I agree. A 72-hour default might lead to confusion, especially if customers expect faster collections on non-usage-based invoices. What if we set the default to something short, like 1 hour, and then let them configure longer grace periods based on specific conditions?",
                         'reactions': [{'emoji': '👍', 'count': 3}]
                     },
                     {
-                        'author': 'Dan Redman',
-                        'time': '09:31 AM',
-                        'text': "Sounds right. Default views for easy navigation, with flexibility to filter and drill down as needed. Let’s also ensure integration points (e.g., Salesforce, Jira) are prominent, so users see the full benefit of connecting ProductCentral across their stack.",
-                        'reactions': []
-                    }
-
-                ]
-            },
-            'Figma': {
-                'channelDescription': "AI-generated fan fiction of Figma’s product channel. Select another company from the top left corner.",
-                'messages': [
-                    {
                         'author': 'Felix Reyes',
-                        'time': '09:10 AM',
-                        'text': "Hey everyone, I think we should double down on security for Embed Kit 2.0. With more sites embedding Figma, we need to make sure embeds are protected, especially with browser changes around third-party cookies. For example, using the Storage Access API would keep things secure even if browsers start blocking cookies.",
+                        'time': '09:23 AM',
+                        'text': "That works technically. We could add a flexible rules engine where they set conditions, like 72 hours for usage-based invoices only. The default could stay at 1 hour for everything else, and the rules would kick in only when the conditions are met.",
                         'reactions': []
-                    },
-                    {
-                        'author': 'Vince Brenner',
-                        'time': '09:13 AM',
-                        'text': "Makes sense. We also need to control who can access embedded content, especially in shared environments. Maybe we set it up so that embeds only accept requests from approved origins? That way, companies can restrict access to their own domains.",
-                        'reactions': [{'emoji': '👍', 'count': 2}]
-                    },
-                    {
-                        'author': 'Cora Lee',
-                        'time': '09:16 AM',
-                        'text': "Good call, especially with more companies embedding prototypes. Having secure origins would also let us keep the UI minimal on the embed—no need to show extra authentication screens if we know the request is coming from a trusted site.",
-                        'reactions': []
-                    },
-                    {
-                        'author': 'Lauren Chen',
-                        'time': '09:19 AM',
-                        'text': "Right, and we could prompt users to register their domains in advance through their OAuth apps. That way, they’re also covered on the backend, so embeds don’t send or receive messages from sites they don’t control.",
-                        'reactions': [{'emoji': '✅', 'count': 1}]
-                    },
-                    {
-                        'author': 'Martin Thompson',
-                        'time': '09:22 AM',
-                        'text': "I like it. Let’s also make sure that permissions carry over from Figma, so if a file requires a login in Figma, it’ll still ask for one in the embed. Keeps it consistent with how permissions already work in the platform.",
-                        'reactions': [{'emoji': '👍', 'count': 2}]
                     },
                     {
                         'author': 'Rahul Singh',
-                        'time': '09:25 AM',
-                        'text': "Agree, and we should use same-origin policy for iframes as another layer. This will enforce permissions on the browser level and prevent any data leaks between different embedded files.",
-                        'reactions': [{'emoji': '🔒', 'count': 2}]
+                        'time': '09:29 AM',
+                        'text': "Also, we should make sure customers can create different grace periods for complex scenarios. For example, they might want a 72-hour grace for usage data but keep 1-hour finalization for basic subscriptions. We’d need a way to handle these multiple rule layers and prioritize the longest grace period if there are conflicting rules.",
+                        'reactions': [{'emoji': '✅', 'count': 2}]
+                    },
+                    {
+                        'author': 'Martin Thompson',
+                        'time': '09:34 AM',
+                        'text': "So, we set the default to 1 hour, and customers can create specific rules for usage-based invoices with a max 72-hour grace. If there’s a mix of line items, the invoice uses the longest grace period, so no usage data is missed.",
+                        'reactions': [{'emoji': '👍', 'count': 3}, {'emoji': '🎯', 'count': 1}]
                     },
                     {
                         'author': 'Dan Redman',
-                        'time': '09:28 AM',
-                        'text': "Sounds good. Let’s go with Felix’s approach on using the Storage Access API to handle the browser side, Vince’s idea for approved origins, and full permissions sync with Figma as Martin mentioned. Security needs to be seamless here, so users feel like embeds are just an extension of their Figma experience.",
+                        'time': '09:37 AM',
+                        'text': "This makes sense. Let’s keep the default fast (1 hour) for simpler use cases and give customers flexibility to extend for usage-based needs. We’ll need the UI to make configuring and viewing these rules as straightforward as possible so customers can clearly see which invoices are in draft and for how long.",
                         'reactions': []
                     }
                 ]
             },
-            'Webflow': {
-                'channelDescription': "AI-generated fan fiction of Webflow’s product channel. Select another company from the top left corner.",
-                'messages': [
-                    {
-                        'author': 'Martin Thompson',
-                        'time': '09:05 AM',
-                        'text': "Hey team, I’ve been thinking about the new forms update. Since forms are so key to conversions, I’m wondering if we should push for more robust bot prevention. The current setup might block basic spam, but what if we introduce more advanced detection? Could be important for sites with higher traffic.",
-                        'reactions': [{'emoji': '🤔', 'count': 3}]
-                    },
-                    {
-                        'author': 'Vince Brenner',
-                        'time': '09:10 AM',
-                        'text': "Definitely agree that we should tighten up bot prevention. But if we go too aggressive, we risk blocking legitimate users, especially for high-traffic sites. We need to strike a balance between security and not disrupting conversion rates.",
-                        'reactions': [{'emoji': '👍', 'count': 2}]
-                    },
-                    {
-                        'author': 'Cora Lee',
-                        'time': '09:15 AM',
-                        'text': "Good point, Vince. From a UX perspective, we can’t let bot detection interfere with the form’s experience. I’d suggest we make sure it runs entirely in the background—users shouldn’t even notice it’s there, unless absolutely necessary. Anything that creates friction could hurt conversions.",
-                        'reactions': [{'emoji': '💯', 'count': 1}]
-                    },
-                    {
-                        'author': 'Lauren Chen',
-                        'time': '09:20 AM',
-                        'text': "Totally agree. We should also give users clear visibility on how effective bot prevention is. Maybe in the revamped settings panel, we can show them how many submissions were blocked or flagged as bots. Could build trust and allow them to adjust thresholds if needed.",
-                        'reactions': [{'emoji': '✅', 'count': 1}]
-                    },
-                    {
-                        'author': 'Felix Reyes',
-                        'time': '09:25 AM',
-                        'text': "I can work on that. We can log bot activity and display it in the new form settings view. It’ll also be easier for developers with the expanded APIs to handle flagged submissions programmatically—whether they want to delete them or review them.",
-                        'reactions': [{'emoji': '🚀', 'count': 2}]
-                    },
-                    {
-                        'author': 'Rahul Singh',
-                        'time': '09:30 AM',
-                        'text': "Plus, we should allow developers to customize bot prevention through the APIs. If some businesses want stricter rules or want to connect it to third-party security apps, that could add flexibility without making it too rigid.",
-                        'reactions': [{'emoji': '👍', 'count': 1}]
-                    },
-                    {
-                        'author': 'Martin Thompson',
-                        'time': '09:35 AM',
-                        'text': "I like where this is going. Advanced bot prevention by default, but customizable through the API for devs who want more control. It keeps things secure without being too rigid for users.",
-                        'reactions': []
-                    },
-                    {
-                        'author': 'Dan Redman',
-                        'time': '09:40 AM',
-                        'text': "Agreed. We need to make sure we’re balancing security with conversion rates. Bot prevention needs to be seamless for the user but powerful for businesses that need it. Let’s prioritize customization through the API so developers can adapt it to their specific needs, and keep the UI clean and transparent.",
-                        'reactions': [{'emoji': '💡', 'count': 1}]
-                    }
-                ]
-            },
-            'Intercom': {
-                'channelDescription': "AI-generated fan fiction of Intercom’s product channel. Select another company from the top left corner.",
-                'messages': [
-                    {
-                        'author': 'Dan Redman',
-                        'time': '09:00 AM',
-                        'text': "Hey team, with the Holistic Overview Report launch coming up, we need to make sure we’re hitting the right balance between visibility and actionability. This report is designed for support leaders to get a full view of both AI and human performance side-by-side, but I’m wondering if there’s more we can do around making sure the insights are actionable and not just data-heavy. Thoughts?",
-                        'reactions': []
-                    },
-                    {
-                        'author': 'Martin Thompson',
-                        'time': '09:05 AM',
-                        'text': "Totally agree, Dan. Right now, we’re presenting a lot of data, which is great, but support leaders need to easily understand where to focus. Maybe we add more direct suggestions or next steps based on the insights? Like, if AI is outperforming humans on a certain task, it could suggest areas to further automate or where more training is needed for the team.",
-                        'reactions': []
-                    },
-                    {
-                        'author': 'Vince Brenner',
-                        'time': '09:10 AM',
-                        'text': "We can definitely do that, but we need to be careful with performance—especially with all the different filters and drill-downs. If we start making real-time suggestions, we might need to rethink how we load and process this data without slowing things down.",
-                        'reactions': [{'emoji': '⚠️', 'count': 1}]
-                    },
-                    {
-                        'author': 'Cora Lee',
-                        'time': '09:15 AM',
-                        'text': "Agree with both. To keep things actionable, we should add context to the charts—like highlighting which specific KPIs are below benchmarks or flagging sudden dips in CSAT. Instead of just giving numbers, we can use visual cues to guide the user toward what needs attention.",
-                        'reactions': []
-                    },
-                    {
-                        'author': 'Lauren Chen',
-                        'time': '09:20 AM',
-                        'text': "And on the topic of guidance, we should think about how to simplify the custom date range and filters. The more options we give them, the more overwhelming it could get. Maybe we could surface the most common filter combinations to make sure leaders can easily slice the data they care about without having to set it up every time.",
-                        'reactions': []
-                    },
-                    {
-                        'author': 'Felix Reyes',
-                        'time': '09:25 AM',
-                        'text': "Yeah, I can build in a way to save common filter sets. As for the suggestions, we could pull from a database of best practices tied to KPIs. For example, if CSAT dips when Fin is handling more tickets, the system could recommend a closer look at certain automation flows.",
-                        'reactions': [{'emoji': '💡', 'count': 1}]
-                    },
-                    {
-                        'author': 'Rahul Singh',
-                        'time': '09:30 AM',
-                        'text': "On the tech side, we also need to ensure the system scales well. Some customers have huge data sets, and pulling trends from AI vs. human agent performance in real-time could slow down our current infrastructure. We’ll need to optimize our queries and maybe even pre-calculate some of the data.",
-                        'reactions': []
-                    },
-                    {
-                        'author': 'Dan Redman',
-                        'time': '09:35 AM',
-                        'text': "Good points all around. Let’s focus on keeping the report actionable by surfacing key insights with visual cues and allowing custom filters without overwhelming users. We’ll need to ensure performance doesn’t take a hit as we add more complexity. Let’s prioritize pre-calculation where possible to keep everything responsive.",
-                        'reactions': [{'emoji': '👍', 'count': 2}]
-                    }
-                ]
-            }
+            // ... (Add other workspaces later)
         };
 
         function openDrawer(name) {
@@ -1097,7 +920,7 @@
 
                 const messageText = document.createElement('div');
                 messageText.className = 'message-text';
-                messageText.innerHTML = message.text.replace(/\n/g, '<br>');
+                messageText.innerHTML = message.text.replace(/\n/g, '<br>'); // Handle line breaks
 
                 messageContent.appendChild(messageAuthor);
                 messageContent.appendChild(messageText);
