@@ -664,103 +664,86 @@
                 'messages': [
                     {
                         'author': 'Martin Thompson',
-                        'time': '09:12 AM',
-                        'text': "Hey team, thinking about document subscriptions. What if we auto-subscribe everyone on the team to all comments and edits on project docs? Keeps everyone in the loop.",
+                        'time': '09:14 AM',
+                        'text': "hey team, wanted to get some quick feedback on the doc subscriptions feature we're working on 🤔\nthinking we should make it so everyone on the team gets auto-subscribed to all project docs by default. that way no one misses anything important",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Lauren Chen',
+                        'time': '09:15 AM',
+                        'text': "wait wouldn't that create a ton of noise though?\nlike if i'm not involved in the design system project, do i need updates about their discovery docs?",
                         'reactions': []
                     },
                     {
                         'author': 'Vince Brenner',
-                        'time': '09:15 AM',
-                        'text': "That could lead to a ton of notifications, especially on big projects. People might start ignoring them if they get too many.",
-                        'reactions': [{ 'emoji': '➕', 'count': 3 }]
+                        'time': '09:16 AM',
+                        'text': "+1 to Lauren's concern. we'd need to build some pretty robust notification filtering\nthe engineering effort to handle that scale of notifications properly would be significant",
+                        'reactions': []
                     },
                     {
                         'author': 'Cora Lee',
+                        'time': '09:17 AM',
+                        'text': "from a design perspective, i'm worried about notification fatigue\nusers already get a lot of notifications from issues and comments. adding every doc update could push people to just ignore everything",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Felix Reyes',
                         'time': '09:18 AM',
-                        'text': "Yeah, that could get distracting. Maybe just auto-sub the doc creator and project lead? They’re the most involved, and they can add others if it’s important.",
+                        'text': "actually building off what Cora said\nwe could do something smarter with the auto-subscribe logic\nlike maybe only auto-subscribe people who are actually involved with the project? 🤔",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Rahul Singh',
+                        'time': '09:19 AM',
+                        'text': "that makes more sense technically too\nwe already have the project member/lead relationships in the data model\nwould be pretty straightforward to use those",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Martin Thompson',
+                        'time': '09:20 AM',
+                        'text': "ok yeah i see what you mean about the noise\nwhat if we did:\n\n- auto-subscribe doc creator\n- auto-subscribe project leads/members for project docs\n- auto-subscribe initiative owner for initiative docs",
                         'reactions': []
                     },
                     {
                         'author': 'Lauren Chen',
                         'time': '09:21 AM',
-                        'text': "Agreed. But team members might still want an option to follow along if they’re working on the project. Maybe the creator or lead can manually add specific people who need updates?",
+                        'text': "that feels more targeted 👍\nbut we should also let people manually subscribe others right?\nlike if i make a discovery doc i might want to add the designer even if they're not officially on the project yet",
                         'reactions': []
                     },
                     {
-                        'author': 'Felix Reyes',
-                        'time': '09:23 AM',
-                        'text': "That’s doable. We could add a way for creators and leads to subscribe team members manually. Keeps notifications targeted but flexible for when others need to follow.",
-                        'reactions': []
-                    },
-                    {
-                        'author': 'Rahul Singh',
-                        'time': '09:29 AM',
-                        'text': "Also, moves and deletes should trigger notifications too. People need to know if a doc they’re following gets moved or deleted, especially if it’s being referenced somewhere.",
-                        'reactions': [{ 'emoji': '👍', 'count': 2 }]
-                    },
-                    {
-                        'author': 'Martin Thompson',
-                        'time': '09:34 AM',
-                        'text': "Alright, so creator and lead get auto-subscribed to comments, edits, moves, and deletes, and they can add others if needed.",
-                        'reactions': [{ 'emoji': '👍', 'count': 4 }, { 'emoji': '🚀', 'count': 1 }]
-                    },
-                    {
-                        'author': 'Dan Redman',
-                        'time': '09:37 AM',
-                        'text': "Good setup. Auto-subscribe creators and leads to all key updates (comments, edits, moves, deletes) with manual add-ons as needed. Let’s be sure the UI clearly shows who’s subscribed—key to keeping customers aligned on critical changes without notification overload.",
-                        'reactions': []
-                    }
-                ]
-            },
-            'Stripe': {
-                'channelDescription': "AI-generated fan fiction of Stripe’s product channel. Select another company from the top left corner.",
-                'messages': [
-                    {
-                        'author': 'Martin Thompson',
-                        'time': '09:12 AM',
-                        'text': "Hey team, for the new billing grace period feature, I’m thinking we set the default to a 72-hour delay on all usage-based invoices. This would give customers plenty of time to add delayed usage data before invoices are finalized.",
+                        'author': 'Cora Lee',
+                        'time': '09:22 AM',
+                        'text': "yes! and make it super obvious how to manage subscriptions\nmaybe a bell icon at the top of every doc?",
                         'reactions': []
                     },
                     {
                         'author': 'Vince Brenner',
-                        'time': '09:15 AM',
-                        'text': "72 hours might be too long as a blanket rule. If customers are invoicing frequently, this could delay their collections more than they expect. Maybe we should set a shorter default and allow them to extend as needed.",
-                        'reactions': [{'emoji': '👍', 'count': 2}]
-                    },
-                    {
-                        'author': 'Cora Lee',
-                        'time': '09:18 AM',
-                        'text': "Good point. A long grace period also adds complexity to the UI, especially if they have different grace periods for different use cases. If we keep a shorter default, we’d also need a clear way for customers to create rules for specific cases, like usage-based invoices.",
+                        'time': '09:23 AM',
+                        'text': "@Dan Redman what do you think about this direction?\nauto-subscribe based on relevant roles + manual subscription options?",
                         'reactions': []
                     },
                     {
-                        'author': 'Lauren Chen',
-                        'time': '09:21 AM',
-                        'text': "Yeah, I agree. A 72-hour default might lead to confusion, especially if customers expect faster collections on non-usage-based invoices. What if we set the default to something short, like 1 hour, and then let them configure longer grace periods based on specific conditions?",
-                        'reactions': [{'emoji': '👍', 'count': 3}]
+                        'author': 'Dan Redman',
+                        'time': '09:25 AM',
+                        'text': "love where this landed. much better than blanket subscriptions\nlet's also make sure we notify on:\n\n- content changes\n- comments/replies\n- moves/deletions\n\nthose feel like the key events people need to know about",
+                        'reactions': []
+                    },
+                    {
+                        'author': 'Martin Thompson',
+                        'time': '09:26 AM',
+                        'text': "perfect, this is way more scalable than my original idea 😅\ni'll update the spec with this approach",
+                        'reactions': []
                     },
                     {
                         'author': 'Felix Reyes',
-                        'time': '09:23 AM',
-                        'text': "That works technically. We could add a flexible rules engine where they set conditions, like 72 hours for usage-based invoices only. The default could stay at 1 hour for everything else, and the rules would kick in only when the conditions are met.",
+                        'time': '09:26 AM',
+                        'text': "sweet, this'll be way easier to implement than the \"everyone gets everything\" approach 🙌",
                         'reactions': []
                     },
                     {
                         'author': 'Rahul Singh',
-                        'time': '09:29 AM',
-                        'text': "Also, we should make sure customers can create different grace periods for complex scenarios. For example, they might want a 72-hour grace for usage data but keep 1-hour finalization for basic subscriptions. We’d need a way to handle these multiple rule layers and prioritize the longest grace period if there are conflicting rules.",
-                        'reactions': [{'emoji': '✅', 'count': 2}]
-                    },
-                    {
-                        'author': 'Martin Thompson',
-                        'time': '09:34 AM',
-                        'text': "So, we set the default to 1 hour, and customers can create specific rules for usage-based invoices with a max 72-hour grace. If there’s a mix of line items, the invoice uses the longest grace period, so no usage data is missed.",
-                        'reactions': [{'emoji': '👍', 'count': 3}, {'emoji': '🎯', 'count': 1}]
-                    },
-                    {
-                        'author': 'Dan Redman',
-                        'time': '09:37 AM',
-                        'text': "This makes sense. Let’s keep the default fast (1 hour) for simpler use cases and give customers flexibility to extend for usage-based needs. We’ll need the UI to make configuring and viewing these rules as straightforward as possible so customers can clearly see which invoices are in draft and for how long.",
+                        'time': '09:27 AM',
+                        'text': "yep, we can get started on this. will create the tasks today 💪",
                         'reactions': []
                     }
                 ]
