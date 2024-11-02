@@ -489,23 +489,23 @@
     <!-- Left Navigation -->
     <div id="left-nav">
         <!-- Desktop Workspace Selector -->
-        <div class="workspace-selector" id="workspace-selector">
+              <div class="workspace-selector" id="workspace-selector">
             <div class="workspace-icon-container">
                 <div class="workspace-icon">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png" alt="Notion Logo">
+                    <img src="https://cdn.worldvectorlogo.com/logos/intercom-2.svg" alt="Intercom Logo">
                 </div>
                 <div class="cascade-icon first"></div>
                 <div class="cascade-icon second"></div>
             </div>
-            <span class="workspace-title">Notion</span>
+            <span class="workspace-title">Intercom</span>
             <div class="workspace-dropdown" id="workspace-dropdown">
-                <div onclick="changeWorkspace('Notion', 'https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png')"><img src="https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png" alt="Notion"> Notion</div>
-                <div onclick="changeWorkspace('Linear', 'https://pageflows.com/media/logos/linear.png')"><img src="https://pageflows.com/media/logos/linear.png" alt="Linear"> Linear</div>
-                <div onclick="changeWorkspace('Stripe', 'https://pbs.twimg.com/profile_images/1618575477781807105/iDuRlqTe_400x400.jpg')"><img src="https://pbs.twimg.com/profile_images/1618575477781807105/iDuRlqTe_400x400.jpg" alt="Stripe"> Stripe</div>
-                <div onclick="changeWorkspace('Airtable', 'https://cdn.prod.website-files.com/625d41a24ba26520fa739e33/62cb2323b008c0f333f24b82_628d09d1fddf444893db0476_airtable%2520logo.png')"><img src="https://cdn.prod.website-files.com/625d41a24ba26520fa739e33/62cb2323b008c0f333f24b82_628d09d1fddf444893db0476_airtable%2520logo.png" alt="Airtable"> Airtable</div>
-                <div onclick="changeWorkspace('Figma', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoUX5LMRa7atIsNfl0nP3DaUaV4URhV0PHfA&s')"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoUX5LMRa7atIsNfl0nP3DaUaV4URhV0PHfA&s" alt="Figma"> Figma</div>
-                <div onclick="changeWorkspace('Webflow', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpmab2aeRSYdlQ3sVlxIMNqY03iOxWZB6WPA&s')"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpmab2aeRSYdlQ3sVlxIMNqY03iOxWZB6WPA&s" alt="Webflow"> Webflow</div>
                 <div onclick="changeWorkspace('Intercom', 'https://cdn.worldvectorlogo.com/logos/intercom-2.svg')"><img src="https://cdn.worldvectorlogo.com/logos/intercom-2.svg" alt="Intercom"> Intercom</div>
+                <div onclick="changeWorkspace('Figma', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoUX5LMRa7atIsNfl0nP3DaUaV4URhV0PHfA&s')"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoUX5LMRa7atIsNfl0nP3DaUaV4URhV0PHfA&s" alt="Figma"> Figma</div>
+                <div onclick="changeWorkspace('Stripe', 'https://pbs.twimg.com/profile_images/1618575477781807105/iDuRlqTe_400x400.jpg')"><img src="https://pbs.twimg.com/profile_images/1618575477781807105/iDuRlqTe_400x400.jpg" alt="Stripe"> Stripe</div>
+                <div onclick="changeWorkspace('Linear', 'https://pageflows.com/media/logos/linear.png')"><img src="https://pageflows.com/media/logos/linear.png" alt="Linear"> Linear</div>
+                <div onclick="changeWorkspace('Webflow', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpmab2aeRSYdlQ3sVlxIMNqY03iOxWZB6WPA&s')"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpmab2aeRSYdlQ3sVlxIMNqY03iOxWZB6WPA&s" alt="Webflow"> Webflow</div>
+                <div onclick="changeWorkspace('Notion', 'https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png')"><img src="https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png" alt="Notion"> Notion</div>
+                <div onclick="changeWorkspace('Airtable', 'https://cdn.prod.website-files.com/625d41a24ba26520fa739e33/62cb2323b008c0f333f24b82_628d09d1fddf444893db0476_airtable%2520logo.png')"><img src="https://cdn.prod.website-files.com/625d41a24ba26520fa739e33/62cb2323b008c0f333f24b82_628d09d1fddf444893db0476_airtable%2520logo.png" alt="Airtable"> Airtable</div>
             </div>
         </div>
         <!-- Desktop Channel List -->
@@ -516,29 +516,28 @@
         </div>
         <!-- Mobile Workspace List -->
         <div class="channel-list" id="mobile-workspace-list">
-            <div class="channel" onclick="changeWorkspace('Notion', 'https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png'); hideLeftNav();">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png" alt="Notion" style="width: 24px; height: 24px; margin-right: 10px; vertical-align: middle;"> Notion
-            </div>
-            <div class="channel" onclick="changeWorkspace('Linear', 'https://pageflows.com/media/logos/linear.png'); hideLeftNav();">
-                <img src="https://pageflows.com/media/logos/linear.png" alt="Linear" style="width: 24px; height: 24px; margin-right: 10px; vertical-align: middle;"> Linear
-            </div>
-            <div class="channel" onclick="changeWorkspace('Stripe', 'https://pbs.twimg.com/profile_images/1618575477781807105/iDuRlqTe_400x400.jpg'); hideLeftNav();">
-                <img src="https://pbs.twimg.com/profile_images/1618575477781807105/iDuRlqTe_400x400.jpg" alt="Stripe" style="width: 24px; height: 24px; margin-right: 10px; vertical-align: middle;"> Stripe
-            </div>
-            <div class="channel" onclick="changeWorkspace('Airtable', 'https://cdn.prod.website-files.com/625d41a24ba26520fa739e33/62cb2323b008c0f333f24b82_628d09d1fddf444893db0476_airtable%2520logo.png'); hideLeftNav();">
-                <img src="https://cdn.prod.website-files.com/625d41a24ba26520fa739e33/62cb2323b008c0f333f24b82_628d09d1fddf444893db0476_airtable%2520logo.png" alt="Airtable" style="width: 24px; height: 24px; margin-right: 10px; vertical-align: middle;"> Airtable
+            <div class="channel" onclick="changeWorkspace('Intercom', 'https://cdn.worldvectorlogo.com/logos/intercom-2.svg'); hideLeftNav();">
+                <img src="https://cdn.worldvectorlogo.com/logos/intercom-2.svg" alt="Intercom" style="width: 24px; height: 24px; margin-right: 10px; vertical-align: middle;"> Intercom
             </div>
             <div class="channel" onclick="changeWorkspace('Figma', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoUX5LMRa7atIsNfl0nP3DaUaV4URhV0PHfA&s'); hideLeftNav();">
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoUX5LMRa7atIsNfl0nP3DaUaV4URhV0PHfA&s" alt="Figma" style="width: 24px; height: 24px; margin-right: 10px; vertical-align: middle;"> Figma
             </div>
+            <div class="channel" onclick="changeWorkspace('Stripe', 'https://pbs.twimg.com/profile_images/1618575477781807105/iDuRlqTe_400x400.jpg'); hideLeftNav();">
+                <img src="https://pbs.twimg.com/profile_images/1618575477781807105/iDuRlqTe_400x400.jpg" alt="Stripe" style="width: 24px; height: 24px; margin-right: 10px; vertical-align: middle;"> Stripe
+            </div>
+            <div class="channel" onclick="changeWorkspace('Linear', 'https://pageflows.com/media/logos/linear.png'); hideLeftNav();">
+                <img src="https://pageflows.com/media/logos/linear.png" alt="Linear" style="width: 24px; height: 24px; margin-right: 10px; vertical-align: middle;"> Linear
+            </div>
             <div class="channel" onclick="changeWorkspace('Webflow', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpmab2aeRSYdlQ3sVlxIMNqY03iOxWZB6WPA&s'); hideLeftNav();">
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpmab2aeRSYdlQ3sVlxIMNqY03iOxWZB6WPA&s" alt="Webflow" style="width: 24px; height: 24px; margin-right: 10px; vertical-align: middle;"> Webflow
             </div>
-            <div class="channel" onclick="changeWorkspace('Intercom', 'https://cdn.worldvectorlogo.com/logos/intercom-2.svg'); hideLeftNav();">
-                <img src="https://cdn.worldvectorlogo.com/logos/intercom-2.svg" alt="Intercom" style="width: 24px; height: 24px; margin-right: 10px; vertical-align: middle;"> Intercom
+            <div class="channel" onclick="changeWorkspace('Notion', 'https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png'); hideLeftNav();">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png" alt="Notion" style="width: 24px; height: 24px; margin-right: 10px; vertical-align: middle;"> Notion
+            </div>
+            <div class="channel" onclick="changeWorkspace('Airtable', 'https://cdn.prod.website-files.com/625d41a24ba26520fa739e33/62cb2323b008c0f333f24b82_628d09d1fddf444893db0476_airtable%2520logo.png'); hideLeftNav();">
+                <img src="https://cdn.prod.website-files.com/625d41a24ba26520fa739e33/62cb2323b008c0f333f24b82_628d09d1fddf444893db0476_airtable%2520logo.png" alt="Airtable" style="width: 24px; height: 24px; margin-right: 10px; vertical-align: middle;"> Airtable
             </div>
         </div>
-    </div>
 
     <!-- Main Content Area -->
     <div id="main-content">
@@ -1463,8 +1462,8 @@
             }
         }
 
-        window.onload = function() {
-            changeWorkspace('Notion', 'https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png');
+               window.onload = function() {
+            changeWorkspace('Intercom', 'https://cdn.worldvectorlogo.com/logos/intercom-2.svg');
         };
     </script>
 </body>
